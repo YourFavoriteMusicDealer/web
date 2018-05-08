@@ -1,42 +1,8 @@
-<template>
-  <div class="framing">
-        <div class="cover"></div>
-        <div class="playline">
-            <div class="play-slider"></div>
-            <span class="elapsed-time">0:36</span>
-            <span class="rest-time">-2:59</span>
-        </div>
-        <h1 class="artist">Скриптонит</h1>
-        <h2 class="title">Вечеринка</h2>
-        <div class="control">
-            <img class="previous" src="assets/img/previous.svg">
-            <img class="play" src="assets/img/play.svg">
-            <img class="next" src="assets/img/next.svg">
-        </div>
-        <div class="volume">
-            <img class="less" src="assets/img/less-volume.svg">
-            <img class="more" src="assets/img/more-volume.svg">
-            <div class="slider"></div>
-        </div>
-        <button class="telegram">
-            <span>Telegram</span>
-            <img src="assets/img/download.svg">
-        </button>
-    </div>
-</template>
-
-<script>
-export default {
-
-}
-</script>
-
-<style>
 /** Regular */
 @font-face {
   font-family: "SF";
   font-weight: normal;
-  src: url("assets/fonts/SFUIDisplay-Regular.woff");
+  src: url("./SFUIDisplay-Regular.woff");
 }
 
 * {
@@ -61,7 +27,7 @@ div {
     width: 124.5px;
     height: 124.5px;
     border-radius: 5px;
-    background-image: url(assets/img/cover.png);
+    background-image: url(cover.jpeg);
     background-size: cover;
 }
 
@@ -196,5 +162,3 @@ button span {
   width: 12px;
   height: 11.5px;
 }
-
-</style>
