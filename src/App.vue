@@ -9,18 +9,18 @@
         <h1 class="artist">Скриптонит</h1>
         <h2 class="title">Вечеринка</h2>
         <div class="control">
-            <img class="previous" src="assets/img/previous.svg">
-            <img class="play" src="assets/img/play.svg">
-            <img class="next" src="assets/img/next.svg">
+            <img class="previous" src="./assets/img/previous.svg">
+            <img class="play" src="./assets/img/play.svg">
+            <img class="next" src="./assets/img/next.svg">
         </div>
         <div class="volume">
-            <img class="less" src="assets/img/less-volume.svg">
-            <img class="more" src="assets/img/more-volume.svg">
+            <img class="less" src="./assets/img/less-volume.svg">
+            <img class="more" src="./assets/img/more-volume.svg">
             <div class="slider"></div>
         </div>
         <button class="telegram">
             <span>Telegram</span>
-            <img src="assets/img/download.svg">
+            <img src="./assets/img/download.svg">
         </button>
     </div>
 </template>
