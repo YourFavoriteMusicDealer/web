@@ -16,7 +16,7 @@
         <div class="volume">
             <img class="less" src="./assets/img/less-volume.svg">
             <img class="more" src="./assets/img/more-volume.svg">
-            <div class="slider"></div>
+            <input class="player-volume__slider" type="range">
         </div>
         <button class="telegram">
             <span>Telegram</span>
@@ -26,9 +26,7 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
@@ -40,142 +38,170 @@ export default {
 }
 
 * {
-  font-family: 'SF';
+  font-family: "SF";
 }
 
 div {
-    margin: auto;
-    text-align: center;
+  margin: auto;
+  text-align: center;
 }
 
 .framing {
-    width: 187.5px;
-    height: 333.5px;
-    background-color: #ffffff;
-    border: 0.5px solid #8f8e94;
-    padding-top: 14px;
+  width: 187.5px;
+  height: 333.5px;
+  background-color: #ffffff;
+  border: 0.5px solid #8f8e94;
 }
 
 .cover {
-    margin: 31.5px auto;
-    width: 124.5px;
-    height: 124.5px;
-    border-radius: 5px;
-    background-image: url(assets/img/cover.png);
-    background-size: cover;
+  margin: 31.5px auto;
+  width: 124.5px;
+  height: 124.5px;
+  border-radius: 5px;
+  background-image: url(assets/img/cover.png);
+  background-size: cover;
 }
 
 .control {
-    padding: 17px;
+  padding: 10px;
 }
 
 .playline {
-    width: 155px;
-    height: 1.5px;
-    border-radius: 2px;
-    background-color: #dddddd;
-    position: relative;
+  width: 155px;
+  height: 1.5px;
+  border-radius: 2px;
+  background-color: #dddddd;
+  position: relative;
 }
 
 .play-slider {
-    width: 3px;
-    height: 3px;
-    position: absolute;
-    bottom: -1px;
-    left: 10px;
-    background-color: #8f8e94;
-    border-radius: 50%;
+  width: 3px;
+  height: 3px;
+  position: absolute;
+  bottom: -1px;
+  left: 10px;
+  background-color: #8f8e94;
+  border-radius: 50%;
 }
 
 .elapsed-time {
-    position: absolute;
-    bottom: -10px;
-    left: 0px;
-    font-size: 6.5px;
-    color: #8c8c8c;
+  position: absolute;
+  bottom: -10px;
+  left: 0px;
+  font-size: 6.5px;
+  color: #8c8c8c;
 }
 
 .rest-time {
-    position: absolute;
-    bottom: -10px;
-    right: 0px;
-    font-size: 6.5px;
-    color: #8c8c8c;
+  position: absolute;
+  bottom: -10px;
+  right: 0px;
+  font-size: 6.5px;
+  color: #8c8c8c;
 }
 
 .artist {
-    padding-top: 20px;
-    margin: auto;
-    width: 91px;
-    height: 14px;
-    font-size: 11.5px;
-    color: #060606;
+  padding-top: 10px;
+  margin: auto;
+  width: 91px;
+  height: 14px;
+  font-size: 11.5px;
+  color: #060606;
 }
 
 .title {
-    margin: auto;
-    width: 107.8px;
-    height: 14.5px;
-    font-size: 12px;
-    color: #ff2d55;
+  margin: auto;
+  width: 107.8px;
+  height: 14.5px;
+  font-size: 12px;
+  color: #ff2d55;
 }
 
 .volume {
-    width: 104px;
-    height: 1.5px;
-    border-radius: 2px;
-    background-color: #8f8e94;
-    position: relative;
+  position: relative;
 }
 
-.volume .slider {
-    width: 14.5px;
-    height: 14.5px;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3);
-    background-color: #ffffff;
-    border: solid 0.3px rgba(0, 0, 0, 0.15);
-    border-radius: 50px;
-    position: absolute;
-    bottom: -7px;
-    right: 10px;
+.player-volume__slider:focus {
+  outline: none;
+}
+
+.player-volume__slider {
+  -webkit-appearance: none;
+  width: 104px;
+  height: 1.5px;
+  padding: 0px;
+  border-radius: 2px;
+  background-color: #8f8e94;
+}
+.player-volume__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14.5px;
+  height: 14.5px;
+  background-color: #ffffff;
+  border: solid 0.3px rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+}
+
+.player-volume__slider::-moz-range-thumb {
+  width: 14.5px;
+  height: 14.5px;
+  background-color: #ffffff;
+  border: solid 0.3px rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+}
+
+.player-volume__slider::-moz-range-track {
+  width: 104px;
+  height: 1.5px;
+  border-radius: 2px;
+  background-color: #8f8e94;
+  padding: 0px;
+}
+
+.player-volume__slider::-ms-fill-lower,
+.player-volume__slider::-ms-fill-upper {
+  background: transparent;
+}
+.player-volume__slider::-ms-track {
+  border: 1px solid #bdc3c7;
 }
 
 button {
-    margin: auto;
-    margin-top: 15px;
-    width: 100px;
-    height: 14px;
-    border-radius: 50px;
-    background-color: #ff2d55;
-    border: none;
-    outline: none;
-    font-size: 7.5px;
-    text-align: center;
-    color: #ffffff;
+  margin: auto;
+  margin-top: 15px;
+  width: 100px;
+  height: 14px;
+  border-radius: 50px;
+  background-color: #ff2d55;
+  border: none;
+  outline: none;
+  font-size: 7.5px;
+  text-align: center;
+  color: #ffffff;
 }
 
 span {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 img {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
 .volume .less {
-    position: absolute;
-    bottom: -3px;
-    left: -10px;
+  position: absolute;
+  bottom: 1px;
+  left: 30px;
 }
 
 .volume .more {
-    position: absolute;
-    bottom: -3px;
-    right: -12px;
+  position: absolute;
+  bottom: 1px;
+  right: 28px;
 }
 
 button span {
-    padding-right: 7px;
+  padding-right: 7px;
 }
 
 .control img {
@@ -196,5 +222,4 @@ button span {
   width: 12px;
   height: 11.5px;
 }
-
 </style>
