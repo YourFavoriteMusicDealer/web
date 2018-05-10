@@ -179,6 +179,10 @@ div {
   border-radius: 50%;
 }
 
+.player-volume__slider::-moz-focus-outer {
+  border:none;
+}
+
 .player-volume__slider::-moz-range-track {
   width: 104px;
   height: 1.5px;
