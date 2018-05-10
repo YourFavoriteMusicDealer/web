@@ -17,7 +17,14 @@
         <div class="player-volume">
             <img class="player-volume__less" src="./assets/img/less-volume.svg">
             <img class="player-volume__more" src="./assets/img/more-volume.svg">
-            <input class="player-volume__slider" type="range" min="0" max="100" step="any" v-model="volume" :style="{background: `linear-gradient(to right, #aaa ${volume}%, #ddd ${100-volume}%)`}">
+            <input 
+             class="player-volume__slider" 
+             type="range" 
+             min="0"
+             max="100"
+             step="any" 
+             v-model="volume" 
+             :style="{background: `linear-gradient(to right, #aaa ${volume}%,#ddd ${volume}%, #ddd ${100-volume}%)`}">
         </div>
         <button class="player-telegram">
             <span>Telegram</span>
