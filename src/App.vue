@@ -181,17 +181,20 @@ div {
   width: 29px;
   height: 29px;
   background-color: #ffffff;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0.3);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
   border: solid 1px rgba(0, 0, 0, 0.3);
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .player-volume__slider::-moz-range-thumb {
   width: 29px;
   height: 29px;
   background-color: #ffffff;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
   border: solid 1px rgba(0, 0, 0, 0.3);
   border-radius: 50%;
+   cursor: pointer;
 }
 
 .player-volume__slider::-moz-focus-outer {
