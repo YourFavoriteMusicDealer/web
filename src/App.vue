@@ -9,9 +9,9 @@
         <h1 class="player-artist">Скриптонит</h1>
         <h2 class="player-song">Вечеринка</h2>
         <div class="player-control">
-          <button> <img class="player-control__prev" src="./assets/img/previous.svg"></button>
-          <button><img class="player-control__play" src="./assets/img/play.svg"></button>
-          <button> <img class="player-control__next" src="./assets/img/next.svg"></button>
+          <button class="player-control__prev"> <img src="./assets/img/previous.svg"></button>
+          <button class="player-control__play"><img  src="./assets/img/play.svg"></button>
+          <button class="player-control__next"> <img  src="./assets/img/next.svg"></button>
 
         </div>
         <div class="player-volume">
@@ -62,78 +62,78 @@ div {
 }
 
 .player {
-  width: 187.5px;
-  height: 333.5px;
+  width: 375px;
+  height: 667px;
   background-color: #ffffff;
-  border: 0.5px solid #8f8e94;
+  border: 1px solid #8f8e94;
 }
 
 .player-cover {
-  margin: 31.5px auto;
-  width: 124.5px;
-  height: 124.5px;
-  border-radius: 5px;
+  margin: 62px auto;
+  width: 249px;
+  height: 249px;
+  border-radius: 10px;
   background-image: url(assets/img/cover.png);
   background-size: cover;
 }
 
 .player-timeline {
-  width: 155px;
-  height: 1.5px;
-  border-radius: 2px;
+  width: 310px;
+  height: 3px;
+  border-radius: 4px;
   background-color: #dddddd;
   position: relative;
 }
 
 .player-timeline__slider {
-  width: 3px;
-  height: 3px;
+  width: 6px;
+  height: 6px;
   position: absolute;
-  bottom: -1px;
-  left: 10px;
+  bottom: -2px;
+  left: 20px;
   background-color: #8f8e94;
   border-radius: 50%;
 }
 
 .player-timeline__elapsed-time {
   position: absolute;
-  bottom: -10px;
+  bottom: -20px;
   left: 0px;
-  font-size: 6.5px;
+  font-size: 13px;
   color: #8c8c8c;
 }
 
 .player-timeline__rest-time {
   position: absolute;
-  bottom: -10px;
+  bottom: -20px;
   right: 0px;
-  font-size: 6.5px;
+  font-size: 13px;
   color: #8c8c8c;
 }
 
 .player-artist {
-  padding-top: 10px;
+  padding-top: 20px;
   margin: auto;
-  width: 91px;
-  height: 14px;
-  font-size: 11.5px;
+  width: 182px;
+  height: 28px;
+  font-size: 23px;
   color: #060606;
 }
 
 .player-song {
   margin: auto;
-  width: 107.8px;
-  height: 14.5px;
-  font-size: 12px;
+  width: 216px;
+  height: 29px;
+  font-size: 24px;
   color: #ff2d55;
 }
 
 .player-control {
-  padding: 10px;
+  margin: 30px 0 20px 0;
 }
 .player-control img {
-  width: 15.8px;
-  height: 18px;
+  width: 42px;
+  height: 46px;
 }
 .player-control button {
   border: none;
@@ -141,27 +141,27 @@ div {
   background: none;
 }
 
-.player-control .play {
-  padding: 0px 20px 0px 20px;
+.player-control__play {
+  margin: 0 33px;
 }
 
 .player-volume {
   position: relative;
 }
 .player-volume img {
-  width: 8.5px;
-  height: 7px;
+  width: 17px;
+  height: 14px;
 }
 .player-volume__less {
   position: absolute;
-  bottom: 1px;
-  left: 30px;
+  bottom: -1px;
+  left: 60px;
 }
 
 .player-volume__more {
   position: absolute;
-  bottom: 1px;
-  right: 28px;
+  bottom: -1px;
+  right: 56px;
 }
 
 .player-volume__slider:focus {
@@ -170,27 +170,27 @@ div {
 
 .player-volume__slider {
   -webkit-appearance: none;
-  width: 104px;
-  height: 1.5px;
+  width: 208px;
+  height: 3px;
   padding: 0px;
-  border-radius: 2px;
+  border-radius: 4px;
   background-color: #8f8e94;
 }
 .player-volume__slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 14.5px;
-  height: 14.5px;
+  width: 29px;
+  height: 29px;
   background-color: #ffffff;
   box-shadow: 0 2px 2px 0 rgba(0,0,0.3);
-  border: solid 0.3px rgba(0, 0, 0, 0.15);
+  border: solid 1px rgba(0, 0, 0, 0.3);
   border-radius: 50%;
 }
 
 .player-volume__slider::-moz-range-thumb {
-  width: 14.5px;
-  height: 14.5px;
+  width: 29px;
+  height: 29px;
   background-color: #ffffff;
-  border: solid 0.3px rgba(0, 0, 0, 0.15);
+  border: solid 1px rgba(0, 0, 0, 0.3);
   border-radius: 50%;
 }
 
@@ -199,9 +199,9 @@ div {
 }
 
 .player-volume__slider::-moz-range-track {
-  width: 104px;
-  height: 1.5px;
-  border-radius: 2px;
+  width: 208px;
+  height: 3px;
+  border-radius: 4px;
   background-color: #8f8e94;
   padding: 0px;
 }
@@ -211,29 +211,29 @@ div {
   background: transparent;
 }
 .player-volume__slider::-ms-track {
-  border: 1px solid #bdc3c7;
+  border: 2px solid #bdc3c7;
 }
 
 .player-telegram {
   margin: auto;
-  margin-top: 15px;
-  width: 100px;
-  height: 14px;
-  border-radius: 50px;
+  margin-top: 40px;
+  width: 200px;
+  height: 28px;
+  border-radius: 100px;
   background-color: #ff2d55;
   border: none;
   outline: none;
-  font-size: 7.5px;
+  font-size: 15px;
   text-align: center;
   color: #ffffff;
 }
 .player-telegram span {
   vertical-align: middle;
-  padding-right: 7px;
+  padding-right: 14px;
 }
 .player-telegram img {
-  width: 12px;
-  height: 11.5px;
+  width: 24px;
+  height: 23px;
   vertical-align: middle;
 }
 </style>
