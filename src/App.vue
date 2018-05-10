@@ -1,24 +1,25 @@
 <template>
-  <div class="framing">
-        <div class="cover"></div>
-        <div class="playline">
-            <div class="play-slider"></div>
-            <span class="elapsed-time">0:36</span>
-            <span class="rest-time">-2:59</span>
+  <div class="player">
+        <div class="player-cover"></div>
+        <div class="player-timeline">
+            <div class="player-timeline__slider"></div>
+            <span class="player-timeline__elapsed-time">0:36</span>
+            <span class="player-timeline__rest-time">-2:59</span>
         </div>
-        <h1 class="artist">Скриптонит</h1>
-        <h2 class="title">Вечеринка</h2>
-        <div class="control">
-            <img class="previous" src="./assets/img/previous.svg">
-            <img class="play" src="./assets/img/play.svg">
-            <img class="next" src="./assets/img/next.svg">
+        <h1 class="player-artist">Скриптонит</h1>
+        <h2 class="player-song">Вечеринка</h2>
+        <div class="player-control">
+          <button> <img class="player-control__prev" src="./assets/img/previous.svg"></button>
+          <button><img class="player-control__play" src="./assets/img/play.svg"></button>
+          <button> <img class="player-control__next" src="./assets/img/next.svg"></button>
+            
         </div>
-        <div class="volume">
-            <img class="less" src="./assets/img/less-volume.svg">
-            <img class="more" src="./assets/img/more-volume.svg">
+        <div class="player-volume">
+            <img class="player-volume__less" src="./assets/img/less-volume.svg">
+            <img class="player-volume__more" src="./assets/img/more-volume.svg">
             <input class="player-volume__slider" type="range">
         </div>
-        <button class="telegram">
+        <button class="player-telegram">
             <span>Telegram</span>
             <img src="./assets/img/download.svg">
         </button>
@@ -46,14 +47,14 @@ div {
   text-align: center;
 }
 
-.framing {
+.player {
   width: 187.5px;
   height: 333.5px;
   background-color: #ffffff;
   border: 0.5px solid #8f8e94;
 }
 
-.cover {
+.player-cover {
   margin: 31.5px auto;
   width: 124.5px;
   height: 124.5px;
@@ -62,11 +63,7 @@ div {
   background-size: cover;
 }
 
-.control {
-  padding: 10px;
-}
-
-.playline {
+.player-timeline {
   width: 155px;
   height: 1.5px;
   border-radius: 2px;
@@ -74,7 +71,7 @@ div {
   position: relative;
 }
 
-.play-slider {
+.player-timeline__slider {
   width: 3px;
   height: 3px;
   position: absolute;
@@ -84,7 +81,7 @@ div {
   border-radius: 50%;
 }
 
-.elapsed-time {
+.player-timeline__elapsed-time {
   position: absolute;
   bottom: -10px;
   left: 0px;
@@ -92,7 +89,7 @@ div {
   color: #8c8c8c;
 }
 
-.rest-time {
+.player-timeline__rest-time {
   position: absolute;
   bottom: -10px;
   right: 0px;
@@ -100,7 +97,7 @@ div {
   color: #8c8c8c;
 }
 
-.artist {
+.player-artist {
   padding-top: 10px;
   margin: auto;
   width: 91px;
@@ -109,7 +106,7 @@ div {
   color: #060606;
 }
 
-.title {
+.player-song {
   margin: auto;
   width: 107.8px;
   height: 14.5px;
@@ -117,8 +114,40 @@ div {
   color: #ff2d55;
 }
 
-.volume {
+.player-control {
+  padding: 10px;
+}
+.player-control img {
+  width: 15.8px;
+  height: 18px;
+}
+.player-control button {
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.player-control .play {
+  padding: 0px 20px 0px 20px;
+}
+
+.player-volume {
   position: relative;
+}
+.player-volume img {
+  width: 8.5px;
+  height: 7px;
+}
+.player-volume__less {
+  position: absolute;
+  bottom: 1px;
+  left: 30px;
+}
+
+.player-volume__more {
+  position: absolute;
+  bottom: 1px;
+  right: 28px;
 }
 
 .player-volume__slider:focus {
@@ -166,7 +195,7 @@ div {
   border: 1px solid #bdc3c7;
 }
 
-button {
+.player-telegram {
   margin: auto;
   margin-top: 15px;
   width: 100px;
@@ -179,47 +208,13 @@ button {
   text-align: center;
   color: #ffffff;
 }
-
-span {
+.player-telegram span {
   vertical-align: middle;
-}
-
-img {
-  vertical-align: middle;
-}
-
-.volume .less {
-  position: absolute;
-  bottom: 1px;
-  left: 30px;
-}
-
-.volume .more {
-  position: absolute;
-  bottom: 1px;
-  right: 28px;
-}
-
-button span {
   padding-right: 7px;
 }
-
-.control img {
-  width: 15.8px;
-  height: 18px;
-}
-
-.control .play {
-  padding: 0px 20px 0px 20px;
-}
-
-.volume img {
-  width: 8.5px;
-  height: 7px;
-}
-
-.telegram img {
+.player-telegram img {
   width: 12px;
   height: 11.5px;
+  vertical-align: middle;
 }
 </style>
