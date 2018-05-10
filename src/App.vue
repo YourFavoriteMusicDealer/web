@@ -181,6 +181,7 @@ div {
   width: 14.5px;
   height: 14.5px;
   background-color: #ffffff;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0.3);
   border: solid 0.3px rgba(0, 0, 0, 0.15);
   border-radius: 50%;
 }
