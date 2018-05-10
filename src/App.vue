@@ -29,11 +29,11 @@
 
 <script>
 export default {
-  data(){
-    return{
-      volumestep:0
-      }        
-    }
+  data() {
+    return {
+      volumestep: 0
+    };
+  }
 };
 </script>
 
@@ -187,7 +187,7 @@ div {
 }
 
 .player-volume__slider::-moz-focus-outer {
-  border:none;
+  border: none;
 }
 
 .player-volume__slider::-moz-range-track {
