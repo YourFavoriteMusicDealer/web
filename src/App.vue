@@ -17,17 +17,24 @@
         <div class="player-volume">
             <img class="player-volume__less" src="./assets/img/less-volume.svg">
             <img class="player-volume__more" src="./assets/img/more-volume.svg">
-            <input class="player-volume__slider" type="range" min="0" max="100" step="any">
+            <input class="player-volume__slider" type="range" min="0" max="100" step="any" v-model="volumestep" :style="{background: `linear-gradient(to right, #aaa ${volumestep}%, #ddd ${100-volumestep}%)`}">
         </div>
         <button class="player-telegram">
             <span>Telegram</span>
             <img src="./assets/img/download.svg">
         </button>
     </div>
+    
 </template>
 
 <script>
-export default {};
+export default {
+  data(){
+    return{
+      volumestep:0
+      }        
+    }
+};
 </script>
 
 <style>
