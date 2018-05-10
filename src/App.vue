@@ -17,7 +17,7 @@
         <div class="player-volume">
             <img class="player-volume__less" src="./assets/img/less-volume.svg">
             <img class="player-volume__more" src="./assets/img/more-volume.svg">
-            <input class="player-volume__slider" type="range">
+            <input class="player-volume__slider" type="range" min="0" max="100" step="any">
         </div>
         <button class="player-telegram">
             <span>Telegram</span>
