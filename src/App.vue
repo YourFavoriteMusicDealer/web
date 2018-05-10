@@ -12,7 +12,7 @@
           <button> <img class="player-control__prev" src="./assets/img/previous.svg"></button>
           <button><img class="player-control__play" src="./assets/img/play.svg"></button>
           <button> <img class="player-control__next" src="./assets/img/next.svg"></button>
-            
+
         </div>
         <div class="player-volume">
             <img class="player-volume__less" src="./assets/img/less-volume.svg">
@@ -24,14 +24,14 @@
             <img src="./assets/img/download.svg">
         </button>
     </div>
-    
+
 </template>
 
 <script>
 export default {
   data() {
     return {
-      volume: 0
+      volume: 100
     };
   }
 };
