@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/YourFavoriteMusicDealer/web.svg?branch=master)](https://travis-ci.org/YourFavoriteMusicDealer/web)
+
 # you-favourite-music-diller
 
 > web-player
