@@ -23,7 +23,7 @@
         max="100"
         step="any" 
         v-model="volume" 
-        :style="{ background: volumeBg}"
+        :style="{ background: volumeBg }"
       />
     </div>
     <button class="player-telegram">
@@ -79,7 +79,7 @@ div {
   width: 249px;
   height: 249px;
   border-radius: 10px;
-  background-image: url(assets/img/cover.png);
+  background-image: url("assets/img/cover.png");
   background-size: cover;
 }
 
