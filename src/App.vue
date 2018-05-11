@@ -24,7 +24,7 @@
              max="100"
              step="any" 
              v-model="volume" 
-             :style="{background: `linear-gradient(to right, #8f8e94 ${volume}%,#ddd ${volume}%, #ddd ${100-volume}%)`}">
+             :style="{ background: volumeBg}">
         </div>
         <button class="player-telegram">
             <span>Telegram</span>
@@ -40,6 +40,13 @@ export default {
     return {
       volume: 100
     };
+  },
+  computed: {
+    volumeBg() {
+      const start = this.volume;
+      const end = 100 - start;
+      return `linear-gradient(to right, #8f8e94 ${start}%,#ddd ${start}%, #ddd ${end}%)`;
+    }
   }
 };
 </script>
