@@ -1,34 +1,53 @@
 <template>
-  <div class="framing">
-        <div class="cover"></div>
-        <div class="playline">
-            <div class="play-slider"></div>
-            <span class="elapsed-time">0:36</span>
-            <span class="rest-time">-2:59</span>
-        </div>
-        <h1 class="artist">Скриптонит</h1>
-        <h2 class="title">Вечеринка</h2>
-        <div class="control">
-            <img class="previous" src="./assets/img/previous.svg">
-            <img class="play" src="./assets/img/play.svg">
-            <img class="next" src="./assets/img/next.svg">
-        </div>
-        <div class="volume">
-            <img class="less" src="./assets/img/less-volume.svg">
-            <img class="more" src="./assets/img/more-volume.svg">
-            <div class="slider"></div>
-        </div>
-        <button class="telegram">
-            <span>Telegram</span>
-            <img src="./assets/img/download.svg">
-        </button>
+  <div class="player">
+    <div class="player-cover"></div>
+    <div class="player-timeline">
+      <div class="player-timeline__slider"></div>
+      <span class="player-timeline__elapsed-time">0:36</span>
+      <span class="player-timeline__rest-time">-2:59</span>
     </div>
+    <h1 class="player-artist">Скриптонит</h1>
+    <h2 class="player-song">Вечеринка</h2>
+    <div class="player-control">
+      <button class="player-control__prev"><img src="./assets/img/previous.svg"></button>
+      <button class="player-control__play"><img src="./assets/img/play.svg"></button>
+      <button class="player-control__next"><img src="./assets/img/next.svg"></button>
+    </div>
+    <div class="player-volume">
+      <img class="player-volume__less" src="./assets/img/less-volume.svg">
+      <img class="player-volume__more" src="./assets/img/more-volume.svg">
+      <input
+        class="player-volume__slider" 
+        type="range" 
+        min="0"
+        max="100"
+        step="any" 
+        v-model="volume" 
+        :style="{ background: volumeGradientBackground }"
+      />
+    </div>
+    <button class="player-telegram">
+      <span>Telegram</span>
+      <img src="./assets/img/download.svg">
+    </button>
+  </div>
 </template>
 
 <script>
 export default {
-
-}
+  data() {
+    return {
+      volume: 100
+    };
+  },
+  computed: {
+    volumeGradientBackground() {
+      const start = this.volume;
+      const end = 100 - start;
+      return `linear-gradient(to right, #8f8e94 ${start}%, #ddd ${start}%, #ddd ${end}%)`;
+    }
+  }
+};
 </script>
 
 <style>
@@ -40,161 +59,199 @@ export default {
 }
 
 * {
-  font-family: 'SF';
+  font-family: "SF";
 }
 
 div {
-    margin: auto;
-    text-align: center;
+  margin: auto;
+  text-align: center;
 }
 
-.framing {
-    width: 187.5px;
-    height: 333.5px;
-    background-color: #ffffff;
-    border: 0.5px solid #8f8e94;
-    padding-top: 14px;
+.player {
+  width: 375px;
+  height: 667px;
+  background-color: #ffffff;
+  border: 1px solid #8f8e94;
 }
 
-.cover {
-    margin: 31.5px auto;
-    width: 124.5px;
-    height: 124.5px;
-    border-radius: 5px;
-    background-image: url(assets/img/cover.png);
-    background-size: cover;
+.player-cover {
+  margin: 62px auto;
+  width: 249px;
+  height: 249px;
+  border-radius: 10px;
+  background-image: url("assets/img/cover.png");
+  background-size: cover;
 }
 
-.control {
-    padding: 17px;
+.player-timeline {
+  width: 310px;
+  height: 3px;
+  border-radius: 4px;
+  background-color: #dddddd;
+  position: relative;
 }
 
-.playline {
-    width: 155px;
-    height: 1.5px;
-    border-radius: 2px;
-    background-color: #dddddd;
-    position: relative;
+.player-timeline__slider {
+  width: 6px;
+  height: 6px;
+  position: absolute;
+  bottom: -2px;
+  left: 20px;
+  background-color: #8f8e94;
+  border-radius: 50%;
 }
 
-.play-slider {
-    width: 3px;
-    height: 3px;
-    position: absolute;
-    bottom: -1px;
-    left: 10px;
-    background-color: #8f8e94;
-    border-radius: 50%;
+.player-timeline__elapsed-time {
+  position: absolute;
+  bottom: -20px;
+  left: 0px;
+  font-size: 13px;
+  color: #8c8c8c;
 }
 
-.elapsed-time {
-    position: absolute;
-    bottom: -10px;
-    left: 0px;
-    font-size: 6.5px;
-    color: #8c8c8c;
+.player-timeline__rest-time {
+  position: absolute;
+  bottom: -20px;
+  right: 0px;
+  font-size: 13px;
+  color: #8c8c8c;
 }
 
-.rest-time {
-    position: absolute;
-    bottom: -10px;
-    right: 0px;
-    font-size: 6.5px;
-    color: #8c8c8c;
+.player-artist {
+  padding-top: 20px;
+  margin: auto;
+  width: 182px;
+  height: 28px;
+  font-size: 23px;
+  color: #060606;
 }
 
-.artist {
-    padding-top: 20px;
-    margin: auto;
-    width: 91px;
-    height: 14px;
-    font-size: 11.5px;
-    color: #060606;
+.player-song {
+  margin: auto;
+  width: 216px;
+  height: 29px;
+  font-size: 24px;
+  color: #ff2d55;
 }
 
-.title {
-    margin: auto;
-    width: 107.8px;
-    height: 14.5px;
-    font-size: 12px;
-    color: #ff2d55;
+.player-control {
+  margin: 30px 0 20px 0;
 }
 
-.volume {
-    width: 104px;
-    height: 1.5px;
-    border-radius: 2px;
-    background-color: #8f8e94;
-    position: relative;
+.player-control img {
+  width: 42px;
+  height: 46px;
 }
 
-.volume .slider {
-    width: 14.5px;
-    height: 14.5px;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.3);
-    background-color: #ffffff;
-    border: solid 0.3px rgba(0, 0, 0, 0.15);
-    border-radius: 50px;
-    position: absolute;
-    bottom: -7px;
-    right: 10px;
+.player-control button {
+  border: none;
+  outline: none;
+  background: none;
 }
 
-button {
-    margin: auto;
-    margin-top: 15px;
-    width: 100px;
-    height: 14px;
-    border-radius: 50px;
-    background-color: #ff2d55;
-    border: none;
-    outline: none;
-    font-size: 7.5px;
-    text-align: center;
-    color: #ffffff;
+.player-control__play {
+  margin: 0 33px;
 }
 
-span {
-    vertical-align: middle;
+.player-volume {
+  position: relative;
 }
 
-img {
-    vertical-align: middle;
+.player-volume img {
+  width: 17px;
+  height: 14px;
 }
 
-.volume .less {
-    position: absolute;
-    bottom: -3px;
-    left: -10px;
+.player-volume__less {
+  position: absolute;
+  bottom: -1px;
+  left: 60px;
 }
 
-.volume .more {
-    position: absolute;
-    bottom: -3px;
-    right: -12px;
+.player-volume__more {
+  position: absolute;
+  bottom: -1px;
+  right: 56px;
 }
 
-button span {
-    padding-right: 7px;
+.player-volume__slider:focus {
+  outline: none;
 }
 
-.control img {
-  width: 15.8px;
-  height: 18px;
+.player-volume__slider {
+  -webkit-appearance: none;
+  width: 208px;
+  height: 3px;
+  padding: 0px;
+  border-radius: 4px;
+  background-color: #8f8e94;
 }
 
-.control .play {
-  padding: 0px 20px 0px 20px;
+.player-volume__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 29px;
+  height: 29px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
+  border: solid 0.3px rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
 }
 
-.volume img {
-  width: 8.5px;
-  height: 7px;
+.player-volume__slider::-moz-range-thumb {
+  width: 29px;
+  height: 29px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
+  border: solid 0.3px rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+   cursor: pointer;
 }
 
-.telegram img {
-  width: 12px;
-  height: 11.5px;
+.player-volume__slider::-moz-focus-outer {
+  border: none;
+}
+
+.player-volume__slider::-moz-range-track {
+  width: 208px;
+  height: 3px;
+  border-radius: 4px;
+  background-color: #8f8e94;
+  padding: 0px;
+}
+
+.player-volume__slider::-ms-fill-lower,
+.player-volume__slider::-ms-fill-upper {
+  background: transparent;
+}
+
+.player-volume__slider::-ms-track {
+  border: 2px solid #bdc3c7;
+}
+
+.player-telegram {
+  margin: auto;
+  margin-top: 40px;
+  width: 200px;
+  height: 28px;
+  border-radius: 100px;
+  background-color: #ff2d55;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.player-telegram span {
+  vertical-align: middle;
+  padding-right: 14px;
+}
+
+.player-telegram img {
+  width: 24px;
+  height: 23px;
+  vertical-align: middle;
 }
 
 </style>
