@@ -137,10 +137,12 @@ div {
 .player-control {
   margin: 30px 0 20px 0;
 }
+
 .player-control img {
   width: 42px;
   height: 46px;
 }
+
 .player-control button {
   border: none;
   outline: none;
@@ -154,10 +156,12 @@ div {
 .player-volume {
   position: relative;
 }
+
 .player-volume img {
   width: 17px;
   height: 14px;
 }
+
 .player-volume__less {
   position: absolute;
   bottom: -1px;
@@ -182,12 +186,13 @@ div {
   border-radius: 4px;
   background-color: #8f8e94;
 }
+
 .player-volume__slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 29px;
   height: 29px;
   background-color: #ffffff;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
   border: solid 0.3px rgba(0, 0, 0, 0.3);
   border-radius: 50%;
   cursor: pointer;
@@ -197,7 +202,7 @@ div {
   width: 29px;
   height: 29px;
   background-color: #ffffff;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
   border: solid 0.3px rgba(0, 0, 0, 0.3);
   border-radius: 50%;
    cursor: pointer;
@@ -219,6 +224,7 @@ div {
 .player-volume__slider::-ms-fill-upper {
   background: transparent;
 }
+
 .player-volume__slider::-ms-track {
   border: 2px solid #bdc3c7;
 }
@@ -236,13 +242,16 @@ div {
   text-align: center;
   color: #ffffff;
 }
+
 .player-telegram span {
   vertical-align: middle;
   padding-right: 14px;
 }
+
 .player-telegram img {
   width: 24px;
   height: 23px;
   vertical-align: middle;
 }
+
 </style>
