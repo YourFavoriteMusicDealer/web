@@ -1,37 +1,36 @@
 <template>
   <div class="player">
-        <div class="player-cover"></div>
-        <div class="player-timeline">
-            <div class="player-timeline__slider"></div>
-            <span class="player-timeline__elapsed-time">0:36</span>
-            <span class="player-timeline__rest-time">-2:59</span>
-        </div>
-        <h1 class="player-artist">Скриптонит</h1>
-        <h2 class="player-song">Вечеринка</h2>
-        <div class="player-control">
-          <button class="player-control__prev"><img src="./assets/img/previous.svg"></button>
-          <button class="player-control__play"><img src="./assets/img/play.svg"></button>
-          <button class="player-control__next"><img src="./assets/img/next.svg"></button>
-
-        </div>
-        <div class="player-volume">
-            <img class="player-volume__less" src="./assets/img/less-volume.svg">
-            <img class="player-volume__more" src="./assets/img/more-volume.svg">
-            <input 
-             class="player-volume__slider" 
-             type="range" 
-             min="0"
-             max="100"
-             step="any" 
-             v-model="volume" 
-             :style="{ background: volumeBg}">
-        </div>
-        <button class="player-telegram">
-            <span>Telegram</span>
-            <img src="./assets/img/download.svg">
-        </button>
+    <div class="player-cover"></div>
+    <div class="player-timeline">
+      <div class="player-timeline__slider"></div>
+      <span class="player-timeline__elapsed-time">0:36</span>
+      <span class="player-timeline__rest-time">-2:59</span>
     </div>
-
+    <h1 class="player-artist">Скриптонит</h1>
+    <h2 class="player-song">Вечеринка</h2>
+    <div class="player-control">
+      <button class="player-control__prev"><img src="./assets/img/previous.svg"></button>
+      <button class="player-control__play"><img src="./assets/img/play.svg"></button>
+      <button class="player-control__next"><img src="./assets/img/next.svg"></button>
+    </div>
+    <div class="player-volume">
+      <img class="player-volume__less" src="./assets/img/less-volume.svg">
+      <img class="player-volume__more" src="./assets/img/more-volume.svg">
+      <input
+        class="player-volume__slider" 
+        type="range" 
+        min="0"
+        max="100"
+        step="any" 
+        v-model="volume" 
+        :style="{ background: volumeBg}"
+      />
+    </div>
+    <button class="player-telegram">
+      <span>Telegram</span>
+      <img src="./assets/img/download.svg">
+    </button>
+  </div>
 </template>
 
 <script>
