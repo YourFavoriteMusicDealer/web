@@ -9,9 +9,9 @@
         <h1 class="player-artist">Скриптонит</h1>
         <h2 class="player-song">Вечеринка</h2>
         <div class="player-control">
-          <button class="player-control__prev"> <img src="./assets/img/previous.svg"></button>
-          <button class="player-control__play"><img  src="./assets/img/play.svg"></button>
-          <button class="player-control__next"> <img  src="./assets/img/next.svg"></button>
+          <button class="player-control__prev"><img src="./assets/img/previous.svg"></button>
+          <button class="player-control__play"><img src="./assets/img/play.svg"></button>
+          <button class="player-control__next"><img src="./assets/img/next.svg"></button>
 
         </div>
         <div class="player-volume">
