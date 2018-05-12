@@ -165,13 +165,13 @@ div {
 .player-volume__less {
   position: absolute;
   bottom: -1px;
-  left: 60px;
+  left: 35px;
 }
 
 .player-volume__more {
   position: absolute;
   bottom: -1px;
-  right: 56px;
+  right: 30px;
 }
 
 .player-volume__slider:focus {
@@ -180,7 +180,7 @@ div {
 
 .player-volume__slider {
   -webkit-appearance: none;
-  width: 208px;
+  width: 265px;
   height: 3px;
   padding: 0px;
   border-radius: 4px;
@@ -213,7 +213,7 @@ div {
 }
 
 .player-volume__slider::-moz-range-track {
-  width: 208px;
+  width: 265px;
   height: 3px;
   border-radius: 4px;
   background-color: #8f8e94;
