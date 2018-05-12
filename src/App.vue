@@ -1,8 +1,8 @@
 <template>
   <div class="player">
-    <div class="player-cover"></div>
+    <div class="player-cover" />
     <div class="player-timeline">
-      <div class="player-timeline__slider"></div>
+      <div class="player-timeline__slider" />
       <span class="player-timeline__elapsed-time">0:36</span>
       <span class="player-timeline__rest-time">-2:59</span>
     </div>
@@ -17,14 +17,14 @@
       <img class="player-volume__less" src="./assets/img/less-volume.svg">
       <img class="player-volume__more" src="./assets/img/more-volume.svg">
       <input
+        v-model="volume" 
+        :style="{ background: volumeGradientBackground }"
         class="player-volume__slider" 
         type="range" 
         min="0"
         max="100"
         step="any" 
-        v-model="volume" 
-        :style="{ background: volumeGradientBackground }"
-      />
+      >
     </div>
     <button class="player-telegram">
       <span>Telegram</span>
@@ -38,16 +38,16 @@ export default {
   data() {
     return {
       volume: 100
-    };
+    }
   },
   computed: {
     volumeGradientBackground() {
-      const start = this.volume;
-      const end = 100 - start;
-      return `linear-gradient(to right, #8f8e94 ${start}%, #ddd ${start}%, #ddd ${end}%)`;
+      const start = this.volume
+      const end = 100 - start
+      return `linear-gradient(to right, #8f8e94 ${start}%, #ddd ${start}%, #ddd ${end}%)`
     }
   }
-};
+}
 </script>
 
 <style>
