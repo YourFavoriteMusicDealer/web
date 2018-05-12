@@ -60,6 +60,8 @@ export default {
 
 * {
   font-family: "SF";
+  letter-spacing: .05em;
+  font-stretch: ultra-condensed;
 }
 
 div {
