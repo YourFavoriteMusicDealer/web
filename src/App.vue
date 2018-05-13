@@ -134,16 +134,16 @@ div {
 
 .player-timeline__slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   background-color: #8f8e94;
   border-radius: 50%;
   cursor: pointer;
 }
 
 .player-timeline__slider::-moz-range-thumb {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   background-color: #8f8e94;
   border-radius: 50%;
   cursor: pointer;
@@ -154,11 +154,7 @@ div {
 }
 
 .player-timeline__slider::-moz-range-track {
-  width: 310px;
-  height: 3px;
-  border-radius: 2px;
-  background-color: #8f8e94;
-  padding: 0px;
+  background: inherit;
 }
 
 .player-timeline__slider::-ms-fill-lower,
@@ -265,6 +261,7 @@ div {
 }
 
 .player-volume__slider::-moz-range-track {
+  background: inherit;
   width: 265px;
   height: 3px;
   border-radius: 4px;
