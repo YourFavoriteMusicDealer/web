@@ -5,8 +5,12 @@
       <span class="player-timeline__elapsed-time">0:36</span>
       <span class="player-timeline__rest-time">-2:59</span>
       <input
+        v-model="timeline" 
+        :style="{ background: timelineGradientBackground }"
         class="player-timeline__slider" 
-        type="range" 
+        type="range"
+        min="0"
+        step="any"  
       >
     </div>
     <h1 class="player-artist">Скриптонит</h1>
@@ -40,13 +44,20 @@
 export default {
   data() {
     return {
-      volume: 100
+      volume: 100,
+
+      timeline: 180
     }
   },
   computed: {
     volumeGradientBackground() {
       const start = this.volume
       const end = 100 - start
+      return `linear-gradient(to right, #8f8e94 ${start}%, #ddd ${start}%, #ddd ${end}%)`
+    },
+    timelineGradientBackground() {
+      const start = this.timeline
+      const end = 180 - start
       return `linear-gradient(to right, #8f8e94 ${start}%, #ddd ${start}%, #ddd ${end}%)`
     }
   }
