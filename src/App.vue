@@ -2,9 +2,12 @@
   <div class="player">
     <div class="player-cover" />
     <div class="player-timeline">
-      <div class="player-timeline__slider" />
       <span class="player-timeline__elapsed-time">0:36</span>
       <span class="player-timeline__rest-time">-2:59</span>
+      <input
+        class="player-timeline__slider" 
+        type="range" 
+      >
     </div>
     <h1 class="player-artist">Скриптонит</h1>
     <h2 class="player-song">Вечеринка</h2>
@@ -86,27 +89,13 @@ div {
 }
 
 .player-timeline {
-  width: 310px;
-  height: 3px;
-  border-radius: 4px;
-  background-color: #dddddd;
-  position: relative;
-}
-
-.player-timeline__slider {
-  width: 6px;
-  height: 6px;
-  position: absolute;
-  bottom: -2px;
-  left: 20px;
-  background-color: #8f8e94;
-  border-radius: 50%;
+   position: relative;
 }
 
 .player-timeline__elapsed-time {
   position: absolute;
   bottom: -20px;
-  left: 0px;
+  left: 33px;
   font-size: 13px;
   color: #8c8c8c;
 }
@@ -114,9 +103,60 @@ div {
 .player-timeline__rest-time {
   position: absolute;
   bottom: -20px;
-  right: 0px;
+  right: 33px;
   font-size: 13px;
   color: #8c8c8c;
+}
+
+.player-timeline__slider:focus {
+  outline: none;
+}
+
+.player-timeline__slider{
+  -webkit-appearance: none;
+  padding: 0px;
+  width: 310px;
+  height: 3px;
+  border-radius: 2px;
+  background-color: #8f8e94;
+}
+
+.player-timeline__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 6px;
+  height: 6px;
+  background-color: #8f8e94;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.player-timeline__slider::-moz-range-thumb {
+  width: 6px;
+  height: 6px;
+  background-color: #8f8e94;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.player-timeline__slider::-moz-focus-outer {
+  border: none;
+}
+
+.player-timeline__slider::-moz-range-track {
+  width: 310px;
+  height: 3px;
+  border-radius: 2px;
+  background-color: #8f8e94;
+  padding: 0px;
+}
+
+.player-timeline__slider::-ms-fill-lower,
+.player-timeline__slider::-ms-fill-upper {
+  background: transparent;
+}
+
+.player-timeline__slider::-ms-track {
+  border: 2px solid #bdc3c7;
 }
 
 .player-artist {
@@ -186,7 +226,6 @@ div {
   height: 3px;
   padding: 0px;
   border-radius: 4px;
-  background-color: #8f8e94;
 }
 
 .player-volume__slider::-webkit-slider-thumb {
@@ -218,7 +257,6 @@ div {
   width: 265px;
   height: 3px;
   border-radius: 4px;
-  background-color: #8f8e94;
   padding: 0px;
 }
 
