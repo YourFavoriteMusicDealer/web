@@ -1,10 +1,18 @@
 <template>
   <div class="player">
-    <div class="player-cover" />
+    <div class="player-cover" />  
     <div class="player-timeline">
-      <div class="player-timeline__slider" />
-      <span class="player-timeline__elapsed-time">0:36</span>
-      <span class="player-timeline__rest-time">-2:59</span>
+      <span class="player-timeline__elapsed-time">{{ currentTime | minute }}</span>
+      <span class="player-timeline__rest-time">-{{ duration - currentTime | minute }}</span>
+      <input
+        v-model="currentTime" 
+        :style="{ background: getGradientBackground(currentTime, duration) }"
+        :max="duration"
+        class="player-timeline__slider" 
+        type="range"
+        min="0"
+        step="any"  
+      >
     </div>
     <h1 class="player-song">Вечеринка</h1>
     <h2 class="player-artist">Скриптонит</h2>
@@ -18,7 +26,7 @@
       <img class="player-volume__more" src="./assets/img/more-volume.svg">
       <input
         v-model="volume" 
-        :style="{ background: volumeGradientBackground }"
+        :style="{ background: getGradientBackground(volume, 100) }"
         class="player-volume__slider" 
         type="range" 
         min="0"
@@ -35,16 +43,29 @@
 
 <script>
 export default {
-  data() {
-    return {
-      volume: 100
+  filters: {
+    minute(value) {
+      let minutes = Math.floor(value / 60)
+      let seconds = Math.round(value - minutes * 60) 
+      if (seconds < 10) {
+        seconds = '0' + seconds
+      }
+
+      return `${minutes}:${seconds}`
     }
   },
-  computed: {
-    volumeGradientBackground() {
-      const start = this.volume
-      const end = 100 - start
-      return `linear-gradient(to right, #8f8e94 ${start}%, #ddd ${start}%, #ddd ${end}%)`
+  data() {
+    return {
+      volume:      100,
+      currentTime: 0,
+      duration:    180
+    }
+  },
+  methods: {
+    getGradientBackground(currentPosition, maxValue) {
+      const start = currentPosition * 100 / maxValue
+
+      return `linear-gradient(to right, #8f8e94 ${start}%, #ddd ${start}%)`
     }
   }
 }
@@ -86,27 +107,13 @@ div {
 }
 
 .player-timeline {
-  width: 310px;
-  height: 3px;
-  border-radius: 4px;
-  background-color: #dddddd;
-  position: relative;
-}
-
-.player-timeline__slider {
-  width: 6px;
-  height: 6px;
-  position: absolute;
-  bottom: -2px;
-  left: 20px;
-  background-color: #8f8e94;
-  border-radius: 50%;
+   position: relative;
 }
 
 .player-timeline__elapsed-time {
   position: absolute;
   bottom: -20px;
-  left: 0px;
+  left: 33px;
   font-size: 13px;
   color: #8c8c8c;
 }
@@ -114,9 +121,58 @@ div {
 .player-timeline__rest-time {
   position: absolute;
   bottom: -20px;
-  right: 0px;
+  right: 33px;
   font-size: 13px;
   color: #8c8c8c;
+}
+
+.player-timeline__slider:focus {
+  outline: none;
+}
+
+.player-timeline__slider{
+  -webkit-appearance: none;
+  padding: 0px;
+  width: 310px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #8f8e94;
+}
+
+.player-timeline__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 7px;
+  height: 7px;
+  background-color: #8f8e94;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.player-timeline__slider::-moz-range-thumb {
+  border: none;
+  width: 7px;
+  height: 7px;
+  background-color: #8f8e94;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.player-timeline__slider::-moz-focus-outer {
+  border: none;
+}
+
+.player-timeline__slider::-moz-range-track {
+  border-radius: inherit;
+  background: inherit;
+}
+
+.player-timeline__slider::-ms-fill-lower,
+.player-timeline__slider::-ms-fill-upper {
+  background: transparent;
+}
+
+.player-timeline__slider::-ms-track {
+  border: 2px solid #bdc3c7;
 }
 
 .player-artist {
@@ -183,7 +239,6 @@ div {
   height: 3px;
   padding: 0px;
   border-radius: 4px;
-  background-color: #8f8e94;
 }
 
 .player-volume__slider::-webkit-slider-thumb {
@@ -212,10 +267,10 @@ div {
 }
 
 .player-volume__slider::-moz-range-track {
+  background: inherit;
   width: 265px;
   height: 3px;
   border-radius: 4px;
-  background-color: #8f8e94;
   padding: 0px;
 }
 
