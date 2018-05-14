@@ -5,8 +5,9 @@
       <span class="player-timeline__elapsed-time">0:36</span>
       <span class="player-timeline__rest-time">-2:59</span>
       <input
-        v-model="timeline" 
+        v-model="currentTime" 
         :style="{ background: timelineGradientBackground }"
+        :max="duration"
         class="player-timeline__slider" 
         type="range"
         min="0"
@@ -46,7 +47,9 @@ export default {
     return {
       volume: 100,
 
-      timeline: 180
+      currentTime: 0,
+
+      duration: 180
     }
   },
   computed: {
@@ -56,8 +59,8 @@ export default {
       return `linear-gradient(to right, #8f8e94 ${start}%, #ddd ${start}%, #ddd ${end}%)`
     },
     timelineGradientBackground() {
-      const start = this.timeline
-      const end = 180 - start
+      const start = this.currentTime * 100 / this.duration 
+      const end = this.duration - start
       return `linear-gradient(to right, #8f8e94 ${start}%, #ddd ${start}%, #ddd ${end}%)`
     }
   }
