@@ -6,8 +6,8 @@
       <span class="player-timeline__elapsed-time">0:36</span>
       <span class="player-timeline__rest-time">-2:59</span>
     </div>
-    <h1 class="player-artist">Скриптонит</h1>
-    <h2 class="player-song">Вечеринка</h2>
+    <h1 class="player-song">Вечеринка</h1>
+    <h2 class="player-artist">Скриптонит</h2>
     <div class="player-control">
       <button class="player-control__prev"><img src="./assets/img/previous.svg"></button>
       <button class="player-control__play"><img src="./assets/img/play.svg"></button>
@@ -120,20 +120,17 @@ div {
 }
 
 .player-artist {
-  padding-top: 20px;
-  margin: auto;
-  width: 182px;
-  height: 28px;
-  font-size: 23px;
-  color: #060606;
+  overflow: hidden;
+  margin:0 30px 0 30px;
+  font-size: 24px;
+  color: #ff2d55;
 }
 
 .player-song {
-  margin: auto;
-  width: 216px;
-  height: 29px;
-  font-size: 24px;
-  color: #ff2d55;
+  overflow: hidden;
+  margin:20px 30px 0 30px; 
+  font-size: 23px;
+  color: #060606;
 }
 
 .player-control {
