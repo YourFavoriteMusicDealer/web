@@ -1,9 +1,9 @@
 <template>
   <div class="player">
-    <div class="player-cover" />
+    <div class="player-cover" />  
     <div class="player-timeline">
-      <span class="player-timeline__elapsed-time">0:36</span>
-      <span class="player-timeline__rest-time">-2:59</span>
+      <span class="player-timeline__elapsed-time">{{ currentTime | parseMinute }}</span>
+      <span class="player-timeline__rest-time">-{{ duration - currentTime | parseMinute }}</span>
       <input
         v-model="currentTime" 
         :style="{ background: getGradientBackground(currentTime, duration) }"
@@ -43,6 +43,17 @@
 
 <script>
 export default {
+  filters: {
+    parseMinute(value) {
+      let minutes = Math.floor(value / 60)
+      let seconds = Math.floor(value - minutes * 60) 
+      if (seconds < 10) {
+        seconds = '0' + seconds
+      }
+
+      return `${minutes}:${seconds}`
+    }
+  },
   data() {
     return {
       volume:      100,
