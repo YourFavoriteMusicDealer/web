@@ -6,7 +6,7 @@
       <span class="player-timeline__rest-time">-2:59</span>
       <input
         v-model="currentTime" 
-        :style="{ background: getGradientBackground(currentTime,duration) }"
+        :style="{ background: getGradientBackground(currentTime, duration) }"
         :max="duration"
         class="player-timeline__slider" 
         type="range"
@@ -26,7 +26,7 @@
       <img class="player-volume__more" src="./assets/img/more-volume.svg">
       <input
         v-model="volume" 
-        :style="{ background: getGradientBackground(volume,100) }"
+        :style="{ background: getGradientBackground(volume, 100) }"
         class="player-volume__slider" 
         type="range" 
         min="0"
@@ -51,7 +51,7 @@ export default {
     }
   },
   methods: {
-    getGradientBackground(currentPosition,maxValue) {
+    getGradientBackground(currentPosition, maxValue) {
       const start = currentPosition * 100 / maxValue
 
       return `linear-gradient(to right, #8f8e94 ${start}%, #ddd ${start}%)`
