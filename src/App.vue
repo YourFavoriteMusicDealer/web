@@ -130,7 +130,7 @@ div {
   -webkit-appearance: none;
   padding: 0px;
   width: 310px;
-  height: 3px;
+  height: 4px;
   border-radius: 2px;
   background-color: #8f8e94;
 }
@@ -145,6 +145,7 @@ div {
 }
 
 .player-timeline__slider::-moz-range-thumb {
+  border: none;
   width: 7px;
   height: 7px;
   background-color: #8f8e94;
@@ -157,6 +158,7 @@ div {
 }
 
 .player-timeline__slider::-moz-range-track {
+  border-radius: inherit;
   background: inherit;
 }
 
