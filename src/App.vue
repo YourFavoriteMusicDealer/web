@@ -3,7 +3,7 @@
     <div class="player-cover" />  
     <div class="player-timeline">
       <span class="player-timeline__elapsed-time">{{ currentTime | parseMinute }}</span>
-      <span class="player-timeline__rest-time">-{{ duration - currentTime | parseMinute }}</span>
+      <span class="player-timeline__rest-time">-{{ duration + 1 - currentTime | parseMinute }}</span>
       <input
         v-model="currentTime" 
         :style="{ background: getGradientBackground(currentTime, duration) }"
