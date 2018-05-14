@@ -45,17 +45,15 @@
 export default {
   data() {
     return {
-      volume: 100,
-
+      volume:      100,
       currentTime: 0,
-
-      duration: 180
+      duration:    180
     }
   },
   methods: {
     getGradientBackground(currentPosition,maxValue) {
       const start = currentPosition * 100 / maxValue
-      const end = maxValue - currentPosition
+
       return `linear-gradient(to right, #8f8e94 ${start}%, #ddd ${start}%)`
     }
   }
