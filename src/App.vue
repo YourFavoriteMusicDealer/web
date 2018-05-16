@@ -21,7 +21,7 @@
       <button class="player-control__prev"><img src="./assets/img/previous.svg"></button>
       <button 
         v-if="show" 
-        :disabled = "isCanPlay" 
+        :disabled = "!isCanPlay" 
         class="player-control__play" 
         @click="show =!show"
       ><img src="./assets/img/play.svg"></button>
@@ -66,7 +66,7 @@ export default {
       volume:      100,
       currentTime: 0,
       duration:    180,
-      isCanPlay:   true,
+      isCanPlay:   false,
       show:        true
     }
   },
@@ -77,7 +77,7 @@ export default {
       return `linear-gradient(to right, #8f8e94 ${start}%, #ddd ${start}%)`
     },
     init() {
-      this.isCanPlay = false
+      this.isCanPlay = true
     }
   }
 }
