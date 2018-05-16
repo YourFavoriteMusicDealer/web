@@ -7,6 +7,7 @@
       @canplay="init"
       @play="isPlay = true" 
       @pause="isPlay = false"
+      @volumechange="changeVolumeExt"
     />
     <div class="player-cover" />  
     <div class="player-timeline">
@@ -46,6 +47,7 @@
         min="0"
         max="100"
         step="any" 
+        @input="changeVolume"
       >
     </div>
     <button class="player-telegram">
@@ -93,6 +95,12 @@ export default {
     pause() {
       this.$refs.audio.pause()
       this.isPlay = false
+    },
+    changeVolume() {
+      this.$refs.audio.volume = this.volume / 100
+    },
+    changeVolumeExt({target}) {
+      this.volume = target.volume * 100
     }
   }
 }
