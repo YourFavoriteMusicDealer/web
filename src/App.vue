@@ -45,13 +45,10 @@
 export default {
   filters: {
     minute(value) {
-      let minutes = Math.floor(value / 60)
-      let seconds = Math.round(value - minutes * 60) 
-      if (seconds < 10) {
-        seconds = '0' + seconds
-      }
-
-      return `${minutes}:${seconds}`
+      return (new Date(value * 1000)).toLocaleString('ru', {
+        minute: 'numeric',
+        second: 'numeric'
+      })
     }
   },
   data() {
