@@ -1,8 +1,6 @@
 <template>
   <div class="player">
-    <audio controls @canplay="init">
-      <source src="http://dlm.mp3party.net/online/1080/1080860.mp3">
-    </audio>
+    <audio src="http://dlm.mp3party.net/online/1080/1080860.mp3" controls @canplay="init" />
     <div class="player-cover" />  
     <div class="player-timeline">
       <span class="player-timeline__elapsed-time">{{ currentTime | minute }}</span>
