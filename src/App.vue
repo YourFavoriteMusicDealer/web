@@ -1,6 +1,13 @@
 <template>
   <div class="player">
-    <audio src="http://dlm.mp3party.net/online/1080/1080860.mp3" controls @canplay="init" />
+    <audio 
+      ref="audio" 
+      src="http://dlm.mp3party.net/online/1080/1080860.mp3" 
+      controls 
+      @canplay="init"
+      @play="isPlay = true" 
+      @pause="isPlay = false"
+    />
     <div class="player-cover" />  
     <div class="player-timeline">
       <span class="player-timeline__elapsed-time">{{ currentTime | minute }}</span>
@@ -20,12 +27,12 @@
     <div class="player-control">
       <button class="player-control__prev"><img src="./assets/img/previous.svg"></button>
       <button 
-        v-if="isPlay" 
+        v-if="!isPlay" 
         :disabled = "!isCanPlay" 
         class="player-control__play" 
-        @click="isPlay =!isPlay"
+        @click="play"
       ><img src="./assets/img/play.svg"></button>
-      <button v-else class="player-control__pause" @click="isPlay =!isPlay"><img src="./assets/img/pause.svg"></button>
+      <button v-else class="player-control__pause" @click="pause"><img src="./assets/img/pause.svg"></button>
       <button class="player-control__next"><img src="./assets/img/next.svg"></button>
     </div>
     <div class="player-volume">
@@ -67,7 +74,7 @@ export default {
       currentTime: 0,
       duration:    180,
       isCanPlay:   false,
-      isPlay:      true
+      isPlay:      false
     }
   },
   methods: {
@@ -78,6 +85,14 @@ export default {
     },
     init() {
       this.isCanPlay = true
+    },
+    play() {
+      this.$refs.audio.play()
+      this.isPlay = true
+    },
+    pause() {
+      this.$refs.audio.pause()
+      this.isPlay = false
     }
   }
 }
