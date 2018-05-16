@@ -21,7 +21,7 @@
     <h2 class="player-artist">Скриптонит</h2>
     <div class="player-control">
       <button class="player-control__prev"><img src="./assets/img/previous.svg"></button>
-      <button :disabled = "disabledBtn" class="player-control__play"><img src="./assets/img/play.svg"></button>
+      <button :disabled = "isCanPlay" class="player-control__play"><img src="./assets/img/play.svg"></button>
       <button class="player-control__next"><img src="./assets/img/next.svg"></button>
     </div>
     <div class="player-volume">
@@ -62,7 +62,7 @@ export default {
       volume:      100,
       currentTime: 0,
       duration:    180,
-      disabledBtn: true
+      isCanPlay:   true
     }
   },
   methods: {
@@ -72,7 +72,7 @@ export default {
       return `linear-gradient(to right, #8f8e94 ${start}%, #ddd ${start}%)`
     },
     init() {
-      this.disabledBtn = false
+      this.isCanPlay = false
     }
   }
 }
