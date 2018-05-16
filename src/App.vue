@@ -1,5 +1,8 @@
 <template>
   <div class="player">
+    <audio controls @canplay="init">
+      <source src="http://dlm.mp3party.net/online/1080/1080860.mp3">
+    </audio>
     <div class="player-cover" />  
     <div class="player-timeline">
       <span class="player-timeline__elapsed-time">{{ currentTime | minute }}</span>
@@ -18,7 +21,7 @@
     <h2 class="player-artist">Скриптонит</h2>
     <div class="player-control">
       <button class="player-control__prev"><img src="./assets/img/previous.svg"></button>
-      <button class="player-control__play"><img src="./assets/img/play.svg"></button>
+      <button :disabled = "disabledBtn" class="player-control__play"><img src="./assets/img/play.svg"></button>
       <button class="player-control__next"><img src="./assets/img/next.svg"></button>
     </div>
     <div class="player-volume">
@@ -58,7 +61,8 @@ export default {
     return {
       volume:      100,
       currentTime: 0,
-      duration:    180
+      duration:    180,
+      disabledBtn: true
     }
   },
   methods: {
@@ -66,6 +70,9 @@ export default {
       const start = currentPosition * 100 / maxValue
 
       return `linear-gradient(to right, #8f8e94 ${start}%, #ddd ${start}%)`
+    },
+    init() {
+      this.disabledBtn = false
     }
   }
 }
@@ -207,6 +214,11 @@ div {
 .player-control__play {
   margin: 0 33px;
 }
+
+
+.player-control__play:disabled, .player-control__play[disabled]{
+   opacity: .5; 
+   }
 
 .player-volume {
   position: relative;
