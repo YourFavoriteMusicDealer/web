@@ -3,11 +3,12 @@
     <audio 
       ref="audio" 
       src="http://dlm.mp3party.net/online/1080/1080860.mp3" 
-      controls 
       @canplay="init"
       @play="isPlay = true" 
       @pause="isPlay = false"
       @volumechange="changeVolumeExt"
+      @timeupdate="changeCurrentTimeExt"
+      @durationchange="setDuration"
     />
     <div class="player-cover" />  
     <div class="player-timeline">
@@ -21,6 +22,7 @@
         type="range"
         min="0"
         step="any"  
+        @input="changeCurrentTime"
       >
     </div>
     <h1 class="player-song">Вечеринка</h1>
@@ -101,6 +103,15 @@ export default {
     },
     changeVolumeExt({target}) {
       this.volume = target.volume * 100
+    },
+    changeCurrentTimeExt({target}) {
+      this.currentTime = target.currentTime
+    },
+    changeCurrentTime() {
+      this.$refs.audio.currentTime = this.currentTime
+    },
+    setDuration({target}) {
+      this.duration = target.duration
     }
   }
 }
