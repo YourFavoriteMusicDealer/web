@@ -21,7 +21,13 @@
     <h2 class="player-artist">Скриптонит</h2>
     <div class="player-control">
       <button class="player-control__prev"><img src="./assets/img/previous.svg"></button>
-      <button :disabled = "isCanPlay" class="player-control__play"><img src="./assets/img/play.svg"></button>
+      <button 
+        v-if="show" 
+        :disabled = "isCanPlay" 
+        class="player-control__play" 
+        @click="show =!show"
+      ><img src="./assets/img/play.svg"></button>
+      <button v-else class="player-control__pause" @click="show =!show"><img src="./assets/img/pause.svg"></button>
       <button class="player-control__next"><img src="./assets/img/next.svg"></button>
     </div>
     <div class="player-volume">
@@ -62,7 +68,8 @@ export default {
       volume:      100,
       currentTime: 0,
       duration:    180,
-      isCanPlay:   true
+      isCanPlay:   true,
+      show:        true
     }
   },
   methods: {
@@ -211,7 +218,7 @@ div {
   background: none;
 }
 
-.player-control__play {
+.player-control__play, .player-control__pause {
   margin: 0 33px;
 }
 
