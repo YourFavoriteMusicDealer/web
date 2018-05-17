@@ -2,7 +2,7 @@
   <div class="player">
     <audio 
       ref="audio" 
-      :src="songValue.url" 
+      :src="songData.url" 
       @canplay="isCanPlay = true"
       @play="isPlay = true" 
       @pause="isPlay = false"
@@ -83,7 +83,7 @@ export default {
       duration:    0,
       isCanPlay:   false,
       isPlay:      false,
-      songValue:   { url: 'http://dlm.mp3party.net/online/1080/1080860.mp3' }
+      songData:    { url: 'http://dlm.mp3party.net/online/1080/1080860.mp3' }
     }
   },
   methods: {
