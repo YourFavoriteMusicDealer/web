@@ -7,9 +7,9 @@
       @canplay="isCanPlay = true"
       @play="isPlay = true" 
       @pause="isPlay = false"
-      @timeupdate="currentTime=$refs.audio.currentTime"
-      @volumechange="volume=$refs.audio.volume"
-      @durationchange="duration=$refs.audio.duration"
+      @timeupdate="currentTime = $refs.audio.currentTime"
+      @volumechange="volume = $refs.audio.volume"
+      @durationchange="duration = $refs.audio.duration"
     />
     <div class="player-cover" />  
     <div class="player-timeline">
@@ -23,7 +23,7 @@
         type="range"
         min="0"
         step="any"  
-        @input="changeCurrentTime"
+        @input="$refs.audio.currentTime = currentTime"
       >
     </div>
     <h1 class="player-song">Вечеринка</h1>
@@ -34,12 +34,12 @@
         v-if="!isPlay" 
         :disabled="!isCanPlay" 
         class="player-control__play" 
-        @click="play"
+        @click="$refs.audio.play()"
       ><img src="./assets/img/play.svg"></button>
       <button 
         v-else 
         class="player-control__pause" 
-        @click="pause"
+        @click="$refs.audio.pause()"
       ><img src="./assets/img/pause.svg"></button>
       <button class="player-control__next"><img src="./assets/img/next.svg"></button>
     </div>
@@ -54,7 +54,7 @@
         min="0"
         max="1"
         step="any" 
-        @input="changeVolume"
+        @input="$refs.audio.volume = volume"
       >
     </div>
     <button class="player-telegram">
@@ -91,18 +91,6 @@ export default {
       const start = currentPosition * 100 / maxValue
 
       return `linear-gradient(to right, #8f8e94 ${start}%, #ddd ${start}%)`
-    },
-    play() {
-      this.$refs.audio.play()
-    },
-    pause() {
-      this.$refs.audio.pause()
-    },
-    changeVolume() {
-      this.$refs.audio.volume = this.volume 
-    },
-    changeCurrentTime() {
-      this.$refs.audio.currentTime = this.currentTime
     }
   }
 }
