@@ -2,7 +2,6 @@
   <div class="player">
     <audio 
       ref="audio" 
-      controls
       src="http://dlm.mp3party.net/online/1080/1080860.mp3" 
       @canplay="isCanPlay = true"
       @play="isPlay = true" 
