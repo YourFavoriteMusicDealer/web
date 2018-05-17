@@ -2,13 +2,14 @@
   <div class="player">
     <audio 
       ref="audio" 
+      controls
       src="http://dlm.mp3party.net/online/1080/1080860.mp3" 
-      @canplay="init"
+      @canplay="isCanPlay = true"
       @play="isPlay = true" 
       @pause="isPlay = false"
-      @volumechange="changeVolumeExt"
-      @timeupdate="changeCurrentTimeExt"
-      @durationchange="setDuration"
+      @timeupdate="currentTime=$refs.audio.currentTime"
+      @volumechange="volume=$refs.audio.volume"
+      @durationchange="duration=$refs.audio.duration"
     />
     <div class="player-cover" />  
     <div class="player-timeline">
@@ -31,11 +32,15 @@
       <button class="player-control__prev"><img src="./assets/img/previous.svg"></button>
       <button 
         v-if="!isPlay" 
-        :disabled = "!isCanPlay" 
+        :disabled="!isCanPlay" 
         class="player-control__play" 
         @click="play"
       ><img src="./assets/img/play.svg"></button>
-      <button v-else class="player-control__pause" @click="pause"><img src="./assets/img/pause.svg"></button>
+      <button 
+        v-else 
+        class="player-control__pause" 
+        @click="pause"
+      ><img src="./assets/img/pause.svg"></button>
       <button class="player-control__next"><img src="./assets/img/next.svg"></button>
     </div>
     <div class="player-volume">
@@ -43,11 +48,11 @@
       <img class="player-volume__more" src="./assets/img/more-volume.svg">
       <input
         v-model="volume" 
-        :style="{ background: getGradientBackground(volume, 100) }"
+        :style="{ background: getGradientBackground(volume, 1) }"
         class="player-volume__slider" 
         type="range" 
         min="0"
-        max="100"
+        max="1"
         step="any" 
         @input="changeVolume"
       >
@@ -74,9 +79,9 @@ export default {
   },
   data() {
     return {
-      volume:      100,
+      volume:      1,
       currentTime: 0,
-      duration:    180,
+      duration:    0,
       isCanPlay:   false,
       isPlay:      false
     }
@@ -87,31 +92,17 @@ export default {
 
       return `linear-gradient(to right, #8f8e94 ${start}%, #ddd ${start}%)`
     },
-    init() {
-      this.isCanPlay = true
-    },
     play() {
       this.$refs.audio.play()
-      this.isPlay = true
     },
     pause() {
       this.$refs.audio.pause()
-      this.isPlay = false
     },
     changeVolume() {
-      this.$refs.audio.volume = this.volume / 100
-    },
-    changeVolumeExt({target}) {
-      this.volume = target.volume * 100
-    },
-    changeCurrentTimeExt({target}) {
-      this.currentTime = target.currentTime
+      this.$refs.audio.volume = this.volume 
     },
     changeCurrentTime() {
       this.$refs.audio.currentTime = this.currentTime
-    },
-    setDuration({target}) {
-      this.duration = target.duration
     }
   }
 }
@@ -256,8 +247,8 @@ div {
 
 
 .player-control__play:disabled, .player-control__play[disabled]{
-   opacity: .5; 
-   }
+  opacity: .5; 
+}
 
 .player-volume {
   position: relative;
