@@ -278,13 +278,17 @@ div {
 .play-enter,
 .play-leave-to {
   opacity: .5;
-  transform: scale(.8);
+  transform: scale(.9);
+}
+.play-enter-active,
+.play-leave-active {
+  transition: all .2s linear;
 }
 
 .play-enter::before,
 .play-leave-to::before {
   background: black;
-  opacity: .3;
+  opacity: 0.2;
 }
 
 .player-volume {
