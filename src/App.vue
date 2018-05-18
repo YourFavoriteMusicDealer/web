@@ -29,17 +29,21 @@
     <h2 class="player-artist">Скриптонит</h2>
     <div class="player-control">
       <button class="player-control__prev"><img src="./assets/img/previous.svg"></button>
-      <button 
-        v-if="!isPlay" 
-        :disabled="!isCanPlay" 
-        class="player-control__play" 
-        @click="$refs.audio.play()"
-      ><img src="./assets/img/play.svg"></button>
-      <button 
-        v-else 
-        class="player-control__pause" 
-        @click="$refs.audio.pause()"
-      ><img src="./assets/img/pause.svg"></button>
+      <transition name="play" mode="out-in">
+        <button 
+          v-if="!isPlay"
+          key="play"
+          :disabled="!isCanPlay" 
+          class="player-control__play" 
+          @click="$refs.audio.play()"
+        ><img src="./assets/img/play.svg"></button>
+        <button 
+          v-else
+          key="pause"
+          class="player-control__pause" 
+          @click="$refs.audio.pause()"
+        ><img src="./assets/img/pause.svg"></button>
+      </transition>
       <button class="player-control__next"><img src="./assets/img/next.svg"></button>
     </div>
     <div class="player-volume">
@@ -344,4 +348,14 @@ div {
   vertical-align: middle;
 }
 
+.play-enter-active,
+.play-leave-active {
+  transition: all 150ms ease;
+}
+
+.play-enter,
+.play-leave-to {
+  opacity: .5;
+  transform: scale(.8);
+}
 </style>
