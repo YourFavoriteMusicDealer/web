@@ -1,5 +1,15 @@
 <template>
   <div class="player">
+    <audio 
+      ref="audio" 
+      :src="songData.url" 
+      @canplay="isCanPlay = true"
+      @play="isPlay = true" 
+      @pause="isPlay = false"
+      @timeupdate="currentTime = $refs.audio.currentTime"
+      @volumechange="volume = $refs.audio.volume"
+      @durationchange="duration = $refs.audio.duration"
+    />
     <div class="player-cover" />  
     <div class="player-timeline">
       <span class="player-timeline__elapsed-time">{{ currentTime | minute }}</span>
@@ -12,13 +22,24 @@
         type="range"
         min="0"
         step="any"  
+        @input="$refs.audio.currentTime = currentTime"
       >
     </div>
     <h1 class="player-song">Вечеринка</h1>
     <h2 class="player-artist">Скриптонит</h2>
     <div class="player-control">
       <button class="player-control__prev"><img src="./assets/img/previous.svg"></button>
-      <button class="player-control__play"><img src="./assets/img/play.svg"></button>
+      <button 
+        v-if="!isPlay" 
+        :disabled="!isCanPlay" 
+        class="player-control__play" 
+        @click="$refs.audio.play()"
+      ><img src="./assets/img/play.svg"></button>
+      <button 
+        v-else 
+        class="player-control__pause" 
+        @click="$refs.audio.pause()"
+      ><img src="./assets/img/pause.svg"></button>
       <button class="player-control__next"><img src="./assets/img/next.svg"></button>
     </div>
     <div class="player-volume">
@@ -26,12 +47,13 @@
       <img class="player-volume__more" src="./assets/img/more-volume.svg">
       <input
         v-model="volume" 
-        :style="{ background: getGradientBackground(volume, 100) }"
+        :style="{ background: getGradientBackground(volume, 1) }"
         class="player-volume__slider" 
         type="range" 
         min="0"
-        max="100"
+        max="1"
         step="any" 
+        @input="$refs.audio.volume = volume"
       >
     </div>
     <button class="player-telegram">
@@ -62,9 +84,12 @@ export default {
   },
   data() {
     return {
-      volume:      100,
+      volume:      1,
       currentTime: 0,
-      duration:    180
+      duration:    0,
+      isCanPlay:   false,
+      isPlay:      false,
+      songData:    { url: 'http://dlm.mp3party.net/online/1080/1080860.mp3' }
     }
   },
   methods: {
@@ -210,8 +235,13 @@ div {
   background: none;
 }
 
-.player-control__play {
+.player-control__play, .player-control__pause {
   margin: 0 33px;
+}
+
+
+.player-control__play:disabled, .player-control__play[disabled]{
+  opacity: .5; 
 }
 
 .player-volume {
