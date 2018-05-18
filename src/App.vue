@@ -225,7 +225,7 @@ div {
 }
 
 .player-control {
-  margin: 30px 0 20px 0;
+  margin: 20px 0 15px 0;
 }
 
 .player-control img {
@@ -237,15 +237,54 @@ div {
   border: none;
   outline: none;
   background: none;
+  position: relative;
+  z-index: 1;
+}
+
+.player-control button:before {
+  content: ''; 
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 50%;
+  display: block;
+  z-index: -1;
+}
+.player-control img{
+  padding: 5px;
+
 }
 
 .player-control__play, .player-control__pause {
   margin: 0 33px;
 }
 
+.player-control__play img{
+  border-radius: 50%;
+}
+
 
 .player-control__play:disabled, .player-control__play[disabled]{
   opacity: .5; 
+}
+
+.play-enter-active,
+.play-leave-active {
+  transition: all 150ms ease;
+}
+
+.play-enter,
+.play-leave-to {
+  opacity: .5;
+  transform: scale(.8);
+}
+
+.play-enter::before,
+.play-leave-to::before {
+  background: black;
+  opacity: .3;
 }
 
 .player-volume {
@@ -348,14 +387,4 @@ div {
   vertical-align: middle;
 }
 
-.play-enter-active,
-.play-leave-active {
-  transition: all 150ms ease;
-}
-
-.play-enter,
-.play-leave-to {
-  opacity: .5;
-  transform: scale(.8);
-}
 </style>
