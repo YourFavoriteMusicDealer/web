@@ -29,21 +29,17 @@
     <h2 class="player-artist">Скриптонит</h2>
     <div class="player-control">
       <button class="player-control__prev"><img src="./assets/img/previous.svg"></button>
-      <transition name="play" mode="out-in">
-        <button 
-          v-if="!isPlay"
-          key="play"
-          :disabled="!isCanPlay" 
-          class="player-control__play" 
-          @click="$refs.audio.play()"
-        ><img src="./assets/img/play.svg"></button>
-        <button 
-          v-else
-          key="pause"
-          class="player-control__pause" 
-          @click="$refs.audio.pause()"
-        ><img src="./assets/img/pause.svg"></button>
-      </transition>
+      <button 
+        v-if="!isPlay"
+        :disabled="!isCanPlay" 
+        class="player-control__play" 
+        @click="$refs.audio.play()"
+      ><img src="./assets/img/play.svg"></button>
+      <button 
+        v-else
+        class="player-control__pause" 
+        @click="$refs.audio.pause()"
+      ><img src="./assets/img/pause.svg"></button>
       <button class="player-control__next"><img src="./assets/img/next.svg"></button>
     </div>
     <div class="player-volume">
@@ -228,67 +224,29 @@ div {
   margin: 20px 0 15px 0;
 }
 
-.player-control img {
-  width: 42px;
-  height: 46px;
-}
-
 .player-control button {
   border: none;
   outline: none;
   background: none;
-  position: relative;
-  z-index: 1;
-}
-
-.player-control button:before {
-  content: ''; 
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   border-radius: 50%;
-  display: block;
-  z-index: -1;
+  padding: 10px;
+  transition: all .2s;
+  box-sizing: border-box;
+  width: 65px;
+  height: 65px;
 }
-.player-control img{
-  padding: 5px;
 
+.player-control button:active {
+ background: #eee;
+ transform: scale(.85);
 }
 
 .player-control__play, .player-control__pause {
   margin: 0 33px;
 }
 
-.player-control__play img{
-  border-radius: 50%;
-}
-
-
 .player-control__play:disabled, .player-control__play[disabled]{
   opacity: .5; 
-}
-
-.play-enter-active,
-.play-leave-active {
-  transition: all 150ms ease;
-}
-
-.play-enter,
-.play-leave-to {
-  opacity: .5;
-  transform: scale(.9);
-}
-.play-enter-active,
-.play-leave-active {
-  transition: all .2s linear;
-}
-
-.play-enter::before,
-.play-leave-to::before {
-  background: black;
-  opacity: 0.2;
 }
 
 .player-volume {
