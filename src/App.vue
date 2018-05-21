@@ -4,8 +4,8 @@
       ref="audio" 
       :src="songData.url" 
       @canplay="isCanPlay = true"
-      @play="isPause = true, isPlay = false" 
-      @pause="isPause = false, isPlay = true"
+      @play="isPlay = false" 
+      @pause="isPlay = true"
       @timeupdate="currentTime = $refs.audio.currentTime"
       @volumechange="volume = $refs.audio.volume"
       @durationchange="duration = $refs.audio.duration"
@@ -36,7 +36,7 @@
         @click="$refs.audio.play()"
       ><img src="./assets/img/play.svg"></button>
       <button 
-        v-show="isPause"
+        v-show="!isPlay"
         class="player-control__pause" 
         @click="$refs.audio.pause()"
       ><img src="./assets/img/pause.svg"></button>
@@ -89,7 +89,6 @@ export default {
       duration:    0,
       isCanPlay:   false,
       isPlay:      true,
-      isPause:     false,
       songData:    { url: 'http://dlm.mp3party.net/online/1080/1080860.mp3' }
     }
   },
@@ -162,7 +161,7 @@ div {
   outline: none;
 }
 
-.player-timeline__slider{
+.player-timeline__slider {
   -webkit-appearance: none;
   padding: 0px;
   width: 310px;
@@ -246,7 +245,7 @@ div {
   margin: 0 33px;
 }
 
-.player-control__play:disabled, .player-control__play[disabled]{
+.player-control__play:disabled, .player-control__play[disabled] {
   opacity: .5; 
 }
 
