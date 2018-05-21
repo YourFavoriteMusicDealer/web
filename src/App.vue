@@ -4,8 +4,8 @@
       ref="audio" 
       :src="songData.url" 
       @canplay="isCanPlay = true"
-      @play="isPlay = true" 
-      @pause="isPlay = false"
+      @play="isPause = true, isPlay = false" 
+      @pause="isPause = false, isPlay = true"
       @timeupdate="currentTime = $refs.audio.currentTime"
       @volumechange="volume = $refs.audio.volume"
       @durationchange="duration = $refs.audio.duration"
@@ -30,13 +30,13 @@
     <div class="player-control">
       <button class="player-control__prev"><img src="./assets/img/previous.svg"></button>
       <button 
-        v-if="!isPlay"
+        v-show="isPlay"
         :disabled="!isCanPlay" 
         class="player-control__play" 
         @click="$refs.audio.play()"
       ><img src="./assets/img/play.svg"></button>
       <button 
-        v-else
+        v-show="isPause"
         class="player-control__pause" 
         @click="$refs.audio.pause()"
       ><img src="./assets/img/pause.svg"></button>
@@ -88,7 +88,8 @@ export default {
       currentTime: 0,
       duration:    0,
       isCanPlay:   false,
-      isPlay:      false,
+      isPlay:      true,
+      isPause:     false,
       songData:    { url: 'http://dlm.mp3party.net/online/1080/1080860.mp3' }
     }
   },
@@ -237,8 +238,8 @@ div {
 }
 
 .player-control button:active {
- background: #eee;
- transform: scale(.85);
+  background: #eee;
+  transform: scale(.85);
 }
 
 .player-control__play, .player-control__pause {
