@@ -133,7 +133,7 @@ div {
   width: 249px;
   height: 249px;
   border-radius: 10px;
-  background-image: url("assets/img/cover.png");
+  background-image: url("assets/img/cover.jpg");
   background-size: cover;
 }
 
