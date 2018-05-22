@@ -30,13 +30,13 @@
     <div class="player-control">
       <button class="player-control__prev"><img src="./assets/img/previous.svg"></button>
       <button 
-        v-if="!isPlay" 
+        v-show="!isPlay"
         :disabled="!isCanPlay" 
         class="player-control__play" 
         @click="$refs.audio.play()"
       ><img src="./assets/img/play.svg"></button>
       <button 
-        v-else 
+        v-show="isPlay"
         class="player-control__pause" 
         @click="$refs.audio.pause()"
       ><img src="./assets/img/pause.svg"></button>
@@ -225,29 +225,41 @@ div {
 }
 
 .player-control {
-  margin: 25px 0 20px 0;
-}
-
-.player-control img {
-  width: 42px;
-  height: 46px;
+  margin: 10px 0;
 }
 
 .player-control button {
   border: none;
   outline: none;
   background: none;
+  border-radius: 50%;
+  transition: all .2s;
+  width: 80px;
+  height: 80px;
+}
+
+.player-control button:active {
+  background: #eee;
+  transform: scale(.85);
+}
+
+.play-enter-active {
+  transition: all .3s ease;
 }
 
 .player-control__play, .player-control__pause {
-  margin: 0 30px;
-  transform: scale(1.1);
+  margin: 0 10px;
 }
 
-
-.player-control__play:disabled, .player-control__play[disabled]{
+.player-control__play:disabled, .player-control__play[disabled] {
   opacity: .5; 
 }
+
+.player-control img { 
+  width: 40px; 
+  height: 40px; 
+  vertical-align: middle;
+} 
 
 .player-volume {
   position: relative;
