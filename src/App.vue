@@ -10,7 +10,9 @@
       @volumechange="volume = $refs.audio.volume"
       @durationchange="duration = $refs.audio.duration"
     />
-    <div class="player-cover" />  
+    <div :class="['player-cover', { 'player-cover_scaled': isPlay }]">
+      <div class="player-cover__img" />
+    </div>
     <div class="player-timeline">
       <span class="player-timeline__elapsed-time">{{ currentTime | minute }}</span>
       <span class="player-timeline__rest-time">-{{ duration - currentTime | minute }}</span>
@@ -131,16 +133,48 @@ div {
 }
 
 .player-cover {
-  margin: 0 auto 40px;
+  margin: 0 auto 45px;
+  position: relative;
+  z-index: 1;
+  transition: transform .3s ease;
+  will-change: transform;
+}
+
+.player-cover__img {
+  background-image: url("https://is2-ssl.mzstatic.com/image/thumb/Music118/v4/ec/ce/69/ecce6903-61a7-4950-b282-d0a084650952/contsched.nuyluqdm.jpg/1200x630bb.jpg");
+  background-size: cover;
   width: 240px;
   height: 240px;
-  border-radius: 10px;
-  background-image: url("assets/img/cover.jpg");
+  border-radius: 5px;
+  position: relative;
+}
+
+.player-cover__img::before {
+  content: '';
+  background-image: inherit;
   background-size: cover;
+  position: absolute;
+  top: 15px;
+  right: 0;
+  bottom: -15px;
+  left: 0;
+  z-index: -1;
+  opacity: 0;
+  filter: blur(25px);
+  transition: transform .3s linear;
+}
+
+.player-cover_scaled {
+  transform: scale(1.25);
+  animation: scale-cover .5s linear .2s;
+}
+
+.player-cover_scaled .player-cover__img::before {
+  opacity: .9;
 }
 
 .player-timeline {
-   position: relative;
+  position: relative;
 }
 
 .player-timeline__elapsed-time,
@@ -359,6 +393,18 @@ div {
   width: 24px;
   height: 23px;
   vertical-align: middle;
+}
+
+@keyframes scale-cover {
+  20% {
+    transform: scale(1.3);
+  }
+  70% {
+    transform: scale(1.245);
+  }
+  100% {
+    transform: scale(1.25);
+  }
 }
 
 </style>
