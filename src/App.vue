@@ -161,7 +161,6 @@ div {
   z-index: -1;
   opacity: 0;
   filter: blur(25px);
-  transition: transform .3s linear;
 }
 
 .player-cover_scaled {
