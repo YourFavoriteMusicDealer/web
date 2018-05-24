@@ -30,23 +30,23 @@
     <h1 class="player-song">Вечеринка</h1>
     <h2 class="player-artist">Скриптонит</h2>
     <div class="player-control">
-      <button class="player-control__prev"><img src="./assets/img/previous.svg"></button>
+      <button class="player-control__prev"><icon name="previous" /></button>
       <button 
         v-show="!isPlay"
         :disabled="!isCanPlay" 
         class="player-control__play" 
         @click="$refs.audio.play()"
-      ><img src="./assets/img/play.svg"></button>
+      ><icon name="play" /></button>
       <button 
         v-show="isPlay"
         class="player-control__pause" 
         @click="$refs.audio.pause()"
-      ><img src="./assets/img/pause.svg"></button>
-      <button class="player-control__next"><img src="./assets/img/next.svg"></button>
+      ><icon name="pause" /></button>
+      <button class="player-control__next"><icon name="next" /></button>
     </div>
     <div class="player-volume">
-      <img class="player-volume__less" src="./assets/img/less-volume.svg">
-      <img class="player-volume__more" src="./assets/img/more-volume.svg">
+      <icon name="less-volume" class="player-volume__less" />
+      <icon name="more-volume" class="player-volume__more" />
       <input
         v-model="volume" 
         :style="{ background: getGradientBackground(volume, 1) }"
@@ -60,7 +60,7 @@
     </div>
     <button class="player-telegram">
       <span>Telegram</span>
-      <img src="./assets/img/download.svg">
+      <icon name="download" />
     </button>
   </div>
 </template>
@@ -280,6 +280,10 @@ div {
   transition: all .3s ease;
 }
 
+.player-control__prev {
+  transform: scale(-1);
+}
+
 .player-control__play, .player-control__pause {
   margin: 0 10px;
 }
@@ -288,7 +292,7 @@ div {
   opacity: .5; 
 }
 
-.player-control img { 
+.player-control svg { 
   width: 40px; 
   height: 40px; 
   vertical-align: middle;
@@ -298,19 +302,20 @@ div {
   position: relative;
 }
 
-.player-volume img {
+.player-volume__less,
+.player-volume__more {
+  color: #8f8e94;
   width: 13px;
+  height: 13px;
+  position: absolute;
+  bottom: -1px;
 }
 
 .player-volume__less {
-  position: absolute;
-  bottom: -1px;
   left: 33px;
 }
 
 .player-volume__more {
-  position: absolute;
-  bottom: -1px;
   right: 35px;
 }
 
@@ -388,7 +393,7 @@ div {
   margin-right: 5px;
 }
 
-.player-telegram img {
+.player-telegram svg {
   width: 24px;
   height: 23px;
   vertical-align: middle;
