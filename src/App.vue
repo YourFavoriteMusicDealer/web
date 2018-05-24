@@ -13,12 +13,12 @@
     <div :class="['player-cover', { 'player-cover_scaled': isPlay }]">
       <div class="player-cover__img" />
     </div>
-    <div class="player-timeline">
-      <span :class="['player-timeline__elapsed-time', { 'player-timeline__elapsed-timeRevind': isRevind }]">{{ currentTime | minute }}</span>
-      <span class="player-timeline__rest-time">-{{ duration - currentTime | minute }}</span>
+    <div class="player-timeline"> 
+      <span :class="['player-timeline__elapsed-time', { 'player-timeline__elapsed-timeRevind': timelinePercent<15 && isRevind }, { 'player-timeline__elapsed-timeRevidRed': isRevind }]">{{ currentTime | minute }}</span>
+      <span :class="['player-timeline__rest-time', { 'player-timeline__rest-timeRevind': timelinePercent>85 && isRevind }]">-{{ duration - currentTime | minute }}</span>
       <input
         v-model="currentTime" 
-        :style="{ background: `linear-gradient(to right, ${colorTimeLine} ${currentTime*100/duration}%, #ddd ${currentTime*100/duration}%)` }"
+        :style="{ background: `linear-gradient(to right, ${colorTimeLine} ${timelinePercent}%, #ddd ${timelinePercent}%)` }"
         :max="duration"
         :class="['player-timeline__slider', { 'player-timeline__sliderRevind': isRevind }]"
         type="range"
@@ -96,6 +96,11 @@ export default {
       isRevind:      false,
       colorTimeLine: '#8f8e94',
       songData:      { url: 'http://dlm.mp3party.net/online/1080/1080860.mp3' }
+    }
+  },
+  computed: {
+    timelinePercent() {
+      return this.currentTime * 100 / this.duration
     }
   },
   methods: {
@@ -193,9 +198,15 @@ div {
 .player-timeline__elapsed-time {
   left: 37px;
 }
+.player-timeline__elapsed-timeRevidRed{
+   color:#ff2d55;
+}
 
 .player-timeline__elapsed-timeRevind{
-  color:#ff2d55;
+  transform: translateY(12px);
+}
+
+.player-timeline__rest-timeRevind{
   transform: translateY(12px);
 }
 
