@@ -18,15 +18,15 @@
       <span class="player-timeline__rest-time">-{{ duration - currentTime | minute }}</span>
       <input
         v-model="currentTime" 
-        :style="{ background: getGradientBackground(currentTime, duration) }"
+        :style="{ background: `linear-gradient(to right, ${colorTimeLine} ${currentTime*100/duration}%, #ddd ${currentTime*100/duration}%)` }"
         :max="duration"
         :class="['player-timeline__slider', { 'player-timeline__sliderRevind': isRevind }]"
         type="range"
         min="0"
         step="any"  
         @input="$refs.audio.currentTime = currentTime"
-        @mousedown="isRevind = true"
-        @mouseup="isRevind = false"
+        @mousedown="isRevind = true, colorTimeLine = '#ff2d55'"
+        @mouseup="isRevind = false, colorTimeLine = '#8c8c8c'"
       >
     </div>
     <h1 class="player-song">Вечеринка</h1>
@@ -88,13 +88,14 @@ export default {
   },
   data() {
     return {
-      volume:      1,
-      currentTime: 0,
-      duration:    0,
-      isCanPlay:   false,
-      isPlay:      false,
-      isRevind:    false,
-      songData:    { url: 'http://dlm.mp3party.net/online/1080/1080860.mp3' }
+      volume:        1,
+      currentTime:   0,
+      duration:      0,
+      isCanPlay:     false,
+      isPlay:        false,
+      isRevind:      false,
+      colorTimeLine: '#8f8e94',
+      songData:      { url: 'http://dlm.mp3party.net/online/1080/1080860.mp3' }
     }
   },
   methods: {
