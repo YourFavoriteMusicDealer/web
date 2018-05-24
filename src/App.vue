@@ -14,7 +14,7 @@
       <div class="player-cover__img" />
     </div>
     <div class="player-timeline">
-      <span class="player-timeline__elapsed-time">{{ currentTime | minute }}</span>
+      <span :class="['player-timeline__elapsed-time', { 'player-timeline__elapsed-timeRevind': isRevind }]">{{ currentTime | minute }}</span>
       <span class="player-timeline__rest-time">-{{ duration - currentTime | minute }}</span>
       <input
         v-model="currentTime" 
@@ -187,10 +187,16 @@ div {
   font-size: 15px;
   letter-spacing: .1em;
   color: #8c8c8c;
+  transition: transform .1s ease-in;
 }
 
 .player-timeline__elapsed-time {
   left: 37px;
+}
+
+.player-timeline__elapsed-timeRevind{
+  color:#ff2d55;
+  transform: translateY(12px);
 }
 
 .player-timeline__rest-time {
@@ -222,9 +228,9 @@ div {
 }
 
 .player-timeline__sliderRevind::-webkit-slider-thumb {
-  transform: scale(5);
+  transform: scale(4);
   background-color: #ff2d55;
-  border: .4px solid white;
+  
 }
 
 .player-timeline__slider::-moz-range-thumb {
