@@ -257,6 +257,11 @@ div {
   border: none;
 }
 
+.player-timeline__sliderRevind::-moz-range-thumb {
+  transform: scale(4);
+  background-color: #ff2d55;
+}
+
 .player-timeline__slider::-moz-range-track {
   border-radius: inherit;
   background: inherit;
