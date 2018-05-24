@@ -280,7 +280,7 @@ div {
   transition: all .3s ease;
 }
 
-.player-control__prev {
+.player-control__prev svg {
   transform: scale(-1);
 }
 
