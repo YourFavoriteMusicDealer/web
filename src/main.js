@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
+import Icon from 'vue-svg-icon/Icon.vue'
+
+Vue.component('icon', Icon)
 
 new Vue({
   el:     '#app',

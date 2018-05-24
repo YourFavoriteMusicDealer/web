@@ -10,7 +10,9 @@
       @volumechange="volume = $refs.audio.volume"
       @durationchange="duration = $refs.audio.duration"
     />
-    <div class="player-cover" />  
+    <div :class="['player-cover', { 'player-cover_scaled': isPlay }]">
+      <div class="player-cover__img" />
+    </div>
     <div class="player-timeline">
       <span class="player-timeline__elapsed-time">{{ currentTime | minute }}</span>
       <span class="player-timeline__rest-time">-{{ duration - currentTime | minute }}</span>
@@ -28,23 +30,23 @@
     <h1 class="player-song">Вечеринка</h1>
     <h2 class="player-artist">Скриптонит</h2>
     <div class="player-control">
-      <button class="player-control__prev"><img src="./assets/img/previous.svg"></button>
+      <button class="player-control__prev"><icon name="previous" /></button>
       <button 
         v-show="!isPlay"
         :disabled="!isCanPlay" 
         class="player-control__play" 
         @click="$refs.audio.play()"
-      ><img src="./assets/img/play.svg"></button>
+      ><icon name="play" /></button>
       <button 
         v-show="isPlay"
         class="player-control__pause" 
         @click="$refs.audio.pause()"
-      ><img src="./assets/img/pause.svg"></button>
-      <button class="player-control__next"><img src="./assets/img/next.svg"></button>
+      ><icon name="pause" /></button>
+      <button class="player-control__next"><icon name="next" /></button>
     </div>
     <div class="player-volume">
-      <img class="player-volume__less" src="./assets/img/less-volume.svg">
-      <img class="player-volume__more" src="./assets/img/more-volume.svg">
+      <icon name="less-volume" class="player-volume__less" />
+      <icon name="more-volume" class="player-volume__more" />
       <input
         v-model="volume" 
         :style="{ background: getGradientBackground(volume, 1) }"
@@ -58,7 +60,7 @@
     </div>
     <button class="player-telegram">
       <span>Telegram</span>
-      <img src="./assets/img/download.svg">
+      <icon name="download" />
     </button>
   </div>
 </template>
@@ -123,38 +125,72 @@ div {
 
 .player {
   width: 375px;
-  height: 667px;
   background-color: #ffffff;
-  border: 1px solid #8f8e94;
+  padding: 70px 0 35px;
+  border-radius: 10px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+  margin-top: 30px;
 }
 
 .player-cover {
-  margin: 62px auto;
-  width: 249px;
-  height: 249px;
-  border-radius: 10px;
-  background-image: url("assets/img/cover.png");
+  margin: 0 auto 45px;
+  position: relative;
+  z-index: 1;
+  transition: transform .3s ease;
+  will-change: transform;
+}
+
+.player-cover__img {
+  background-image: url("https://is2-ssl.mzstatic.com/image/thumb/Music118/v4/ec/ce/69/ecce6903-61a7-4950-b282-d0a084650952/contsched.nuyluqdm.jpg/1200x630bb.jpg");
   background-size: cover;
+  width: 240px;
+  height: 240px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.player-cover__img::before {
+  content: '';
+  background-image: inherit;
+  background-size: cover;
+  position: absolute;
+  top: 15px;
+  right: 0;
+  bottom: -15px;
+  left: 0;
+  z-index: -1;
+  opacity: 0;
+  filter: blur(25px);
+}
+
+.player-cover_scaled {
+  transform: scale(1.25);
+  animation: scale-cover .5s linear .2s;
+}
+
+.player-cover_scaled .player-cover__img::before {
+  opacity: .9;
 }
 
 .player-timeline {
-   position: relative;
+  position: relative;
+}
+
+.player-timeline__elapsed-time,
+.player-timeline__rest-time {
+  position: absolute;
+  bottom: -18px;
+  font-size: 15px;
+  letter-spacing: .1em;
+  color: #8c8c8c;
 }
 
 .player-timeline__elapsed-time {
-  position: absolute;
-  bottom: -20px;
-  left: 33px;
-  font-size: 13px;
-  color: #8c8c8c;
+  left: 37px;
 }
 
 .player-timeline__rest-time {
-  position: absolute;
-  bottom: -20px;
-  right: 33px;
-  font-size: 13px;
-  color: #8c8c8c;
+  right: 37px;
 }
 
 .player-timeline__slider:focus {
@@ -163,8 +199,8 @@ div {
 
 .player-timeline__slider {
   -webkit-appearance: none;
-  padding: 0px;
-  width: 310px;
+  padding: 0;
+  width: 300px;
   height: 4px;
   border-radius: 2px;
   background-color: #8f8e94;
@@ -208,20 +244,21 @@ div {
 
 .player-artist {
   overflow: hidden;
-  margin:0 30px 0 30px;
-  font-size: 24px;
+  margin: 0 30px 0 30px;
+  font-size: 1.2em;
   color: #ff2d55;
 }
 
 .player-song {
   overflow: hidden;
-  margin:20px 30px 0 30px; 
-  font-size: 23px;
+  margin: 30px 30px 0 30px; 
+  font-size: 1.2em;
+  font-weight: bold;
   color: #060606;
 }
 
 .player-control {
-  margin: 20px 0 15px 0;
+  margin: 10px 0;
 }
 
 .player-control button {
@@ -229,11 +266,9 @@ div {
   outline: none;
   background: none;
   border-radius: 50%;
-  padding: 10px;
   transition: all .2s;
-  box-sizing: border-box;
-  width: 65px;
-  height: 65px;
+  width: 80px;
+  height: 80px;
 }
 
 .player-control button:active {
@@ -241,33 +276,47 @@ div {
   transform: scale(.85);
 }
 
+.play-enter-active {
+  transition: all .3s ease;
+}
+
+.player-control__prev {
+  transform: scale(-1);
+}
+
 .player-control__play, .player-control__pause {
-  margin: 0 33px;
+  margin: 0 10px;
 }
 
 .player-control__play:disabled, .player-control__play[disabled] {
   opacity: .5; 
 }
 
+.player-control svg { 
+  width: 40px; 
+  height: 40px; 
+  vertical-align: middle;
+} 
+
 .player-volume {
   position: relative;
 }
 
-.player-volume img {
-  width: 17px;
-  height: 14px;
+.player-volume__less,
+.player-volume__more {
+  color: #8f8e94;
+  width: 13px;
+  height: 13px;
+  position: absolute;
+  bottom: -1px;
 }
 
 .player-volume__less {
-  position: absolute;
-  bottom: -1px;
-  left: 35px;
+  left: 33px;
 }
 
 .player-volume__more {
-  position: absolute;
-  bottom: -1px;
-  right: 30px;
+  right: 35px;
 }
 
 .player-volume__slider:focus {
@@ -276,10 +325,11 @@ div {
 
 .player-volume__slider {
   -webkit-appearance: none;
-  width: 265px;
+  width: 255px;
   height: 3px;
   padding: 0px;
   border-radius: 4px;
+  margin-right: 5px;
 }
 
 .player-volume__slider::-webkit-slider-thumb {
@@ -300,7 +350,7 @@ div {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.3);
   border: solid 0.3px rgba(0, 0, 0, 0.3);
   border-radius: 50%;
-   cursor: pointer;
+  cursor: pointer;
 }
 
 .player-volume__slider::-moz-focus-outer {
@@ -309,7 +359,8 @@ div {
 
 .player-volume__slider::-moz-range-track {
   background: inherit;
-  width: 265px;
+  width: 255px;
+  margin-right: 5px;
   height: 3px;
   border-radius: 4px;
   padding: 0px;
@@ -325,10 +376,9 @@ div {
 }
 
 .player-telegram {
-  margin: auto;
-  margin-top: 40px;
-  width: 200px;
-  height: 28px;
+  margin: 35px auto 0;
+  width: 160px;
+  height: 40px;
   border-radius: 100px;
   background-color: #ff2d55;
   border: none;
@@ -340,13 +390,25 @@ div {
 
 .player-telegram span {
   vertical-align: middle;
-  padding-right: 14px;
+  margin-right: 5px;
 }
 
-.player-telegram img {
+.player-telegram svg {
   width: 24px;
   height: 23px;
   vertical-align: middle;
+}
+
+@keyframes scale-cover {
+  20% {
+    transform: scale(1.3);
+  }
+  70% {
+    transform: scale(1.245);
+  }
+  100% {
+    transform: scale(1.25);
+  }
 }
 
 </style>
