@@ -276,11 +276,16 @@ div {
   transform: scale(.85);
 }
 
+/* Fix filling in Safari */
+.player-control button:active svg {
+  fill: inherit;
+}
+
 .play-enter-active {
   transition: all .3s ease;
 }
 
-.player-control__prev {
+.player-control__prev svg {
   transform: scale(-1);
 }
 
