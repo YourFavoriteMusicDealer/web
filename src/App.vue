@@ -20,11 +20,13 @@
         v-model="currentTime" 
         :style="{ background: getGradientBackground(currentTime, duration) }"
         :max="duration"
-        class="player-timeline__slider" 
+        :class="['player-timeline__slider', { 'player-timeline__sliderRevind': isRevind }]"
         type="range"
         min="0"
         step="any"  
         @input="$refs.audio.currentTime = currentTime"
+        @mousedown="isRevind = true"
+        @mouseup="isRevind = false"
       >
     </div>
     <h1 class="player-song">Вечеринка</h1>
@@ -91,6 +93,7 @@ export default {
       duration:    0,
       isCanPlay:   false,
       isPlay:      false,
+      isRevind:    false,
       songData:    { url: 'http://dlm.mp3party.net/online/1080/1080860.mp3' }
     }
   },
@@ -213,6 +216,14 @@ div {
   background-color: #8f8e94;
   border-radius: 50%;
   cursor: pointer;
+  transition: all .1s ease-in;
+  will-change: all;
+}
+
+.player-timeline__sliderRevind::-webkit-slider-thumb {
+  transform: scale(5);
+  background-color: #ff2d55;
+  border: .4px solid white;
 }
 
 .player-timeline__slider::-moz-range-thumb {
