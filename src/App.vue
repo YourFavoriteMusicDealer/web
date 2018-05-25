@@ -10,7 +10,7 @@
       @volumechange="volume = $refs.audio.volume"
       @durationchange="duration = $refs.audio.duration"
     />
-    <div :class="['player-cover', { 'player-cover_scaled': isPlay }]">
+    <div :class="['player-cover', { 'player-cover_scaled': isPlay }, { 'player-coverPauseRevind': isRevind }]"> 
       <div class="player-cover__img" />
     </div>
     <div class="player-timeline"> 
@@ -147,6 +147,10 @@ div {
   z-index: 1;
   transition: transform .3s ease;
   will-change: transform;
+}
+
+.player-coverPauseRevind {
+  transform: translateY(-20px);
 }
 
 .player-cover__img {
