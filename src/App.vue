@@ -20,7 +20,7 @@
       <span :class="['player-timeline__rest-time', { 'player-timeline__rest-timeRevind': timelinePercent>85 && isRevind }]">-{{ duration - currentTime | minute }}</span>
       <input
         v-model="currentTime" 
-        :style="{ background: `linear-gradient(to right, ${colorTimeLine} ${timelinePercent}%, #ddd ${timelinePercent}%)` }"
+        :style="{ background: getGradientBackground(currentTime, duration,isRevind) }"
         :max="duration"
         :class="['player-timeline__slider', { 'player-timeline__sliderRevind': isRevind }]"
         type="range"
@@ -90,14 +90,13 @@ export default {
   },
   data() {
     return {
-      volume:        1,
-      currentTime:   0,
-      duration:      0,
-      isCanPlay:     false,
-      isPlay:        false,
-      isRevind:      false,
-      colorTimeLine: '#8f8e94',
-      songData:      { url: 'http://dlm.mp3party.net/online/1080/1080860.mp3' }
+      volume:      1,
+      currentTime: 0,
+      duration:    0,
+      isCanPlay:   false,
+      isPlay:      false,
+      isRevind:    false,
+      songData:    { url: 'http://dlm.mp3party.net/online/1080/1080860.mp3' }
     }
   },
   computed: {
@@ -106,10 +105,11 @@ export default {
     }
   },
   methods: {
-    getGradientBackground(currentPosition, maxValue) {
+    getGradientBackground(currentPosition, maxValue, isHighlight) {
       const start = currentPosition * 100 / maxValue
+      const color = isHighlight ? '#ff2d55' : '#8c8c8c'
 
-      return `linear-gradient(to right, #8f8e94 ${start}%, #ddd ${start}%)`
+      return `linear-gradient(to right, ${color} ${start}%, #ddd ${start}%)`
     }
   }
 }
