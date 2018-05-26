@@ -10,7 +10,7 @@
       @volumechange="volume = $refs.audio.volume"
       @durationchange="duration = $refs.audio.duration"
     />
-    <div :class="{ 'player-coverPlayRevind': isRevind && isPlay }"> 
+    <div :class="['player-coverShell', { 'player-coverPlayRevind': isRevind && isPlay }]"> 
       <div :class="['player-cover', { 'player-cover_scaled': isPlay }, { 'player-coverPauseRevind': isRevind }]"> 
         <div class="player-cover__img" />
       </div>
@@ -20,15 +20,15 @@
       <span :class="['player-timeline__rest-time', { 'player-timeline__rest-timeRevind': timelinePercent>85 && isRevind }]">-{{ duration - currentTime | minute }}</span>
       <input
         v-model="currentTime" 
-        :style="{ background: getGradientBackground(currentTime, duration,isRevind) }"
+        :style="{ background: getGradientBackground(currentTime, duration, isRevind) }"
         :max="duration"
         :class="['player-timeline__slider', { 'player-timeline__sliderRevind': isRevind }]"
         type="range"
         min="0"
         step="any"  
         @input="$refs.audio.currentTime = currentTime"
-        @mousedown="isRevind = true, colorTimeLine = '#ff2d55'"
-        @mouseup="isRevind = false, colorTimeLine = '#8c8c8c'"
+        @mousedown="isRevind = true"
+        @mouseup="isRevind = false"
       >
     </div>
     <h1 class="player-song">Вечеринка</h1>
@@ -155,8 +155,15 @@ div {
   transform: translateY(-20px);
 }
 
+.player-coverShell {
+  position: relative;
+  z-index: 1;
+  transition: transform .1s ease-in;
+  will-change: transform;
+}
+
 .player-coverPlayRevind {
-  transform: scale(.7);
+  transform: scale(.9) translateY(-20px);;
 }
 
 .player-cover__img {
@@ -244,6 +251,7 @@ div {
   background-color: #8f8e94;
   border-radius: 50%;
   cursor: pointer;
+  backface-visibility: hidden;
   transition: all .1s ease-in;
   will-change: all;
 }
