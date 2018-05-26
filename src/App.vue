@@ -10,8 +10,10 @@
       @volumechange="volume = $refs.audio.volume"
       @durationchange="duration = $refs.audio.duration"
     />
-    <div :class="['player-cover', { 'player-cover_scaled': isPlay }, { 'player-coverPauseRevind': isRevind }]"> 
-      <div class="player-cover__img" />
+    <div :class="{ 'player-coverPlayRevind': isRevind && isPlay }"> 
+      <div :class="['player-cover', { 'player-cover_scaled': isPlay }, { 'player-coverPauseRevind': isRevind }]"> 
+        <div class="player-cover__img" />
+      </div>
     </div>
     <div class="player-timeline"> 
       <span :class="['player-timeline__elapsed-time', { 'player-timeline__elapsed-timeRevind': timelinePercent<15 && isRevind }, { 'player-timeline__elapsed-timeRevidRed': isRevind }]">{{ currentTime | minute }}</span>
@@ -151,6 +153,10 @@ div {
 
 .player-coverPauseRevind {
   transform: translateY(-20px);
+}
+
+.player-coverPlayRevind {
+  transform: scale(.7);
 }
 
 .player-cover__img {
