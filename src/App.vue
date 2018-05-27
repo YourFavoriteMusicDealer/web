@@ -198,7 +198,7 @@ div {
   transition: transform .1s ease-in;
 }
 
-.player-timeline__time_highlight{
+.player-timeline__time_highlight {
    color:#ff2d55;
 }
 
@@ -208,10 +208,6 @@ div {
 
 .player-timeline__time_right {
   right: 37px;
-}
-
-.player-timeline__rest-timeRevind{
-  transform: translateY(12px);
 }
 
 .player-timeline__slider:focus {
@@ -248,7 +244,6 @@ div {
   transform: scale(4);
   background-color: #ff2d55;
 }
-
 
 .player-timeline__slider::-moz-range-thumb {
   border: none;
