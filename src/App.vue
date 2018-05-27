@@ -96,7 +96,7 @@ export default {
       isCanPlay:   false,
       isPlay:      false,
       isRevind:    false,
-      songData:    { url: 'http://dlm.mp3party.net/online/1080/1080860.mp3' }
+      songData:    { url: 'http://dymchenko-art.ru/song/1256/stream' }
     }
   },
   computed: {
@@ -167,7 +167,7 @@ div {
 }
 
 .player-cover__img {
-  background-image: url("https://is2-ssl.mzstatic.com/image/thumb/Music118/v4/ec/ce/69/ecce6903-61a7-4950-b282-d0a084650952/contsched.nuyluqdm.jpg/1200x630bb.jpg");
+  background-image: url("https://sun1-9.userapi.com/c841035/v841035273/67304/ta_vyHgsssE.jpg");
   background-size: cover;
   width: 240px;
   height: 240px;
