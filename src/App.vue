@@ -240,11 +240,6 @@ div {
   background-color: #ff2d55;
 }
 
-.player-timeline__slider--thumb::-moz-range-thumb {
-  transform: scale(4);
-  background-color: #ff2d55;
-}
-
 .player-timeline__slider::-moz-range-thumb {
   border: none;
   width: 7px;
@@ -252,6 +247,11 @@ div {
   background-color: #8f8e94;
   border-radius: 50%;
   cursor: pointer;
+}
+
+.player-timeline__slider--thumb::-moz-range-thumb {
+  transform: scale(4);
+  background-color: #ff2d55;
 }
 
 .player-timeline__slider::-moz-focus-outer {
