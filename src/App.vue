@@ -199,7 +199,7 @@ div {
 }
 
 .player-timeline__time_highlight {
-   color:#ff2d55;
+  color:#ff2d55;
 }
 
 .player-timeline__time_moved {
