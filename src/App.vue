@@ -10,17 +10,17 @@
       @volumechange="volume = $refs.audio.volume"
       @durationchange="duration = $refs.audio.duration"
     />
-    <div :class="['player-cover', { 'player-cover_scaled': isPlay }, { 'player-cover_pause-revind': isRevind }, { 'player-cover_play-revind': isRevind & isPlay }]"> 
+    <div :class="['player-cover', { 'player-cover_scaled': isPlay }, { 'player-cover_moved': isRevind }]"> 
       <div class="player-cover__img" />
     </div>
     <div class="player-timeline"> 
-      <span :class="['player-timeline__elapsed-time', { 'player-timeline__elapsed-timeRevind': timelinePercent<15 && isRevind }, { 'player-timeline__elapsed-timeRevidRed': isRevind }]">{{ currentTime | minute }}</span>
-      <span :class="['player-timeline__rest-time', { 'player-timeline__rest-timeRevind': timelinePercent>85 && isRevind }]">-{{ duration - currentTime | minute }}</span>
+      <span :class="['player-timeline__time','player-timeline__time_left', { 'player-timeline__timeline_moved': timelinePercent<15 && isRevind }, { 'player-timeline__time_highlight': isRevind }]">{{ currentTime | minute }}</span>
+      <span :class="['player-timeline__time','player-timeline__time_right', { 'player-timeline__timeline_moved': timelinePercent>85 && isRevind }]">-{{ duration - currentTime | minute }}</span>
       <input
         v-model="currentTime" 
         :style="{ background: getGradientBackground(currentTime, duration, isRevind) }"
         :max="duration"
-        :class="['player-timeline__slider', { 'player-timeline__sliderRevind': isRevind }]"
+        :class="['player-timeline__slider', { 'player-timeline__slider--thumb': isRevind }]"
         type="range"
         min="0"
         step="any"  
@@ -149,10 +149,6 @@ div {
   will-change: transform;
 }
 
-.player-cover_pause-revind {
-  transform: translateY(-20px);
-}
-
 .player-cover__img {
   background-image: url("https://sun1-9.userapi.com/c841035/v841035273/67304/ta_vyHgsssE.jpg");
   background-size: cover;
@@ -181,8 +177,8 @@ div {
   animation: scale-cover .5s linear .2s;
 }
 
-.player-cover_play-revind {
-  transform: scale(1) translateY(-20px);;
+.player-cover_moved {
+  transform: translateY(-20px);
 }
 
 .player-cover_scaled .player-cover__img::before {
@@ -193,8 +189,7 @@ div {
   position: relative;
 }
 
-.player-timeline__elapsed-time,
-.player-timeline__rest-time {
+.player-timeline__time {
   position: absolute;
   bottom: -18px;
   font-size: 15px;
@@ -203,23 +198,20 @@ div {
   transition: transform .1s ease-in;
 }
 
-.player-timeline__elapsed-time {
-  left: 37px;
-}
-.player-timeline__elapsed-timeRevidRed{
+.player-timeline__time_highlight{
    color:#ff2d55;
 }
 
-.player-timeline__elapsed-timeRevind{
+.player-timeline__timeline_moved {
   transform: translateY(12px);
+}
+
+.player-timeline__time_right {
+  right: 37px;
 }
 
 .player-timeline__rest-timeRevind{
   transform: translateY(12px);
-}
-
-.player-timeline__rest-time {
-  right: 37px;
 }
 
 .player-timeline__slider:focus {
@@ -247,11 +239,16 @@ div {
   will-change: all;
 }
 
-.player-timeline__sliderRevind::-webkit-slider-thumb {
+.player-timeline__slider--thumb::-webkit-slider-thumb {
   transform: scale(4);
   background-color: #ff2d55;
-  
 }
+
+.player-timeline__slider--thumb::-moz-range-thumb {
+  transform: scale(4);
+  background-color: #ff2d55;
+}
+
 
 .player-timeline__slider::-moz-range-thumb {
   border: none;
@@ -264,11 +261,6 @@ div {
 
 .player-timeline__slider::-moz-focus-outer {
   border: none;
-}
-
-.player-timeline__sliderRevind::-moz-range-thumb {
-  transform: scale(4);
-  background-color: #ff2d55;
 }
 
 .player-timeline__slider::-moz-range-track {
@@ -322,10 +314,6 @@ div {
 /* Fix filling in Safari */
 .player-control button:active svg {
   fill: inherit;
-}
-
-.play-enter-active {
-  transition: all .3s ease;
 }
 
 .player-control__prev svg {
