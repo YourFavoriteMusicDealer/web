@@ -10,10 +10,8 @@
       @volumechange="volume = $refs.audio.volume"
       @durationchange="duration = $refs.audio.duration"
     />
-    <div :class="['player-coverShell', { 'player-coverPlayRevind': isRevind && isPlay }]"> 
-      <div :class="['player-cover', { 'player-cover_scaled': isPlay }, { 'player-coverPauseRevind': isRevind }]"> 
-        <div class="player-cover__img" />
-      </div>
+    <div :class="['player-cover', { 'player-cover_scaled': isPlay }, { 'player-cover_pause-revind': isRevind }, { 'player-cover_play-revind': isRevind & isPlay }]"> 
+      <div class="player-cover__img" />
     </div>
     <div class="player-timeline"> 
       <span :class="['player-timeline__elapsed-time', { 'player-timeline__elapsed-timeRevind': timelinePercent<15 && isRevind }, { 'player-timeline__elapsed-timeRevidRed': isRevind }]">{{ currentTime | minute }}</span>
@@ -96,7 +94,7 @@ export default {
       isCanPlay:   false,
       isPlay:      false,
       isRevind:    false,
-      songData:    { url: 'http://dymchenko-art.ru/song/1256/stream' }
+      songData:    { url: 'http://dlm.mp3party.net/online/1080/1080860.mp3' }
     }
   },
   computed: {
@@ -151,19 +149,8 @@ div {
   will-change: transform;
 }
 
-.player-coverPauseRevind {
+.player-cover_pause-revind {
   transform: translateY(-20px);
-}
-
-.player-coverShell {
-  position: relative;
-  z-index: 1;
-  transition: transform .1s ease-in;
-  will-change: transform;
-}
-
-.player-coverPlayRevind {
-  transform: scale(.9) translateY(-20px);;
 }
 
 .player-cover__img {
@@ -192,6 +179,10 @@ div {
 .player-cover_scaled {
   transform: scale(1.25);
   animation: scale-cover .5s linear .2s;
+}
+
+.player-cover_play-revind {
+  transform: scale(1) translateY(-20px);;
 }
 
 .player-cover_scaled .player-cover__img::before {
