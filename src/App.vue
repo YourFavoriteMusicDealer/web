@@ -20,7 +20,7 @@
         v-model="currentTime" 
         :style="{ background: getGradientBackground(currentTime, duration, isRevind) }"
         :max="duration"
-        :class="['player-timeline__slider', { 'player-timeline__slider--thumb': isRevind }]"
+        :class="['player-timeline__slider', { 'player-timeline__change-thumb': isRevind }]"
         type="range"
         min="0"
         step="any"  
@@ -235,7 +235,7 @@ div {
   will-change: all;
 }
 
-.player-timeline__slider--thumb::-webkit-slider-thumb {
+.player-timeline__change-thumb::-webkit-slider-thumb {
   transform: scale(4);
   background-color: #ff2d55;
 }
@@ -249,7 +249,7 @@ div {
   cursor: pointer;
 }
 
-.player-timeline__slider--thumb::-moz-range-thumb {
+.player-timeline__change-thumb::-moz-range-thumb {
   transform: scale(4);
   background-color: #ff2d55;
 }
