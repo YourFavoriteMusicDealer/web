@@ -31,8 +31,8 @@
         @mouseup="isRevind = false"
       >
     </div>
-    <h1 class="player-song">Вечеринка</h1>
-    <h2 class="player-artist">Скриптонит</h2>
+    <h1 class="player-song">Hold On, I'm Comin'</h1>
+    <h2 class="player-artist">Sam & Dave</h2>
     <div class="player-control">
       <button class="player-control__prev"><icon name="previous" /></button>
       <button 
