@@ -14,8 +14,8 @@
       <div class="player-cover__img" />
     </div>
     <div class="player-timeline"> 
-      <span :class="['player-timeline__time','player-timeline__time_left', { 'player-timeline__time_moved': timelinePercent<15 && isRevind }, { 'player-timeline__time_highlight': isRevind }]">{{ currentTime | minute }}</span>
-      <span :class="['player-timeline__time','player-timeline__time_right', { 'player-timeline__time_moved': timelinePercent>85 && isRevind }]">-{{ duration - currentTime | minute }}</span>
+      <span :class="['player-timeline__time', 'player-timeline__time_left', { 'player-timeline__time_moved': timelinePercent<15 && isRevind }, { 'player-timeline__time_highlight': isRevind }]">{{ currentTime | minute }}</span>
+      <span :class="['player-timeline__time', 'player-timeline__time_right', { 'player-timeline__time_moved': timelinePercent>85 && isRevind }]">-{{ duration - currentTime | minute }}</span>
       <input
         v-model="currentTime" 
         :style="{ background: getGradientBackground(currentTime, duration, isRevind) }"
