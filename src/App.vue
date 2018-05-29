@@ -10,25 +10,27 @@
       @volumechange="volume = $refs.audio.volume"
       @durationchange="duration = $refs.audio.duration"
     />
-    <div :class="['player-cover', { 'player-cover_scaled': isPlay }]">
+    <div :class="['player-cover', { 'player-cover_scaled': isPlay }, { 'player-cover_moved': isRevind }]"> 
       <div class="player-cover__img" />
     </div>
-    <div class="player-timeline">
-      <span class="player-timeline__elapsed-time">{{ currentTime | minute }}</span>
-      <span class="player-timeline__rest-time">-{{ duration - currentTime | minute }}</span>
+    <div class="player-timeline"> 
+      <span :class="['player-timeline__time', 'player-timeline__time_left', { 'player-timeline__time_moved': timelinePercent<15 && isRevind }, { 'player-timeline__time_highlight': isRevind }]">{{ currentTime | minute }}</span>
+      <span :class="['player-timeline__time', 'player-timeline__time_right', { 'player-timeline__time_moved': timelinePercent>85 && isRevind }]">-{{ duration - currentTime | minute }}</span>
       <input
         v-model="currentTime" 
-        :style="{ background: getGradientBackground(currentTime, duration) }"
+        :style="{ background: getGradientBackground(currentTime, duration, isRevind) }"
         :max="duration"
-        class="player-timeline__slider" 
+        :class="['player-timeline__slider', { 'player-timeline__slider_change-thumb': isRevind }]"
         type="range"
         min="0"
         step="any"  
         @input="$refs.audio.currentTime = currentTime"
+        @mousedown="isRevind = true"
+        @mouseup="isRevind = false"
       >
     </div>
-    <h1 class="player-song">Вечеринка</h1>
-    <h2 class="player-artist">Скриптонит</h2>
+    <h1 class="player-song">Hold On, I'm Comin'</h1>
+    <h2 class="player-artist">Sam & Dave</h2>
     <div class="player-control">
       <button class="player-control__prev"><icon name="previous" /></button>
       <button 
@@ -91,14 +93,21 @@ export default {
       duration:    0,
       isCanPlay:   false,
       isPlay:      false,
+      isRevind:    false,
       songData:    { url: 'http://dlm.mp3party.net/online/1080/1080860.mp3' }
     }
   },
+  computed: {
+    timelinePercent() {
+      return this.currentTime * 100 / this.duration
+    }
+  },
   methods: {
-    getGradientBackground(currentPosition, maxValue) {
+    getGradientBackground(currentPosition, maxValue, isHighlight) {
       const start = currentPosition * 100 / maxValue
+      const color = isHighlight ? '#ff2d55' : '#8c8c8c'
 
-      return `linear-gradient(to right, #8f8e94 ${start}%, #ddd ${start}%)`
+      return `linear-gradient(to right, ${color} ${start}%, #ddd ${start}%)`
     }
   }
 }
@@ -141,7 +150,7 @@ div {
 }
 
 .player-cover__img {
-  background-image: url("https://is2-ssl.mzstatic.com/image/thumb/Music118/v4/ec/ce/69/ecce6903-61a7-4950-b282-d0a084650952/contsched.nuyluqdm.jpg/1200x630bb.jpg");
+  background-image: url("https://sun1-9.userapi.com/c841035/v841035273/67304/ta_vyHgsssE.jpg");
   background-size: cover;
   width: 240px;
   height: 240px;
@@ -168,6 +177,10 @@ div {
   animation: scale-cover .5s linear .2s;
 }
 
+.player-cover_moved {
+  transform: translateY(-20px);
+}
+
 .player-cover_scaled .player-cover__img::before {
   opacity: .9;
 }
@@ -176,20 +189,24 @@ div {
   position: relative;
 }
 
-.player-timeline__elapsed-time,
-.player-timeline__rest-time {
+.player-timeline__time {
   position: absolute;
   bottom: -18px;
   font-size: 15px;
   letter-spacing: .1em;
   color: #8c8c8c;
+  transition: transform .1s ease-in;
 }
 
-.player-timeline__elapsed-time {
-  left: 37px;
+.player-timeline__time_highlight {
+  color:#ff2d55;
 }
 
-.player-timeline__rest-time {
+.player-timeline__time_moved {
+  transform: translateY(12px);
+}
+
+.player-timeline__time_right {
   right: 37px;
 }
 
@@ -213,6 +230,14 @@ div {
   background-color: #8f8e94;
   border-radius: 50%;
   cursor: pointer;
+  backface-visibility: hidden;
+  transition: all .1s ease-in;
+  will-change: all;
+}
+
+.player-timeline__slider_change-thumb::-webkit-slider-thumb {
+  transform: scale(4);
+  background-color: #ff2d55;
 }
 
 .player-timeline__slider::-moz-range-thumb {
@@ -222,6 +247,11 @@ div {
   background-color: #8f8e94;
   border-radius: 50%;
   cursor: pointer;
+}
+
+.player-timeline__slider_change-thumb::-moz-range-thumb {
+  transform: scale(4);
+  background-color: #ff2d55;
 }
 
 .player-timeline__slider::-moz-focus-outer {
@@ -279,10 +309,6 @@ div {
 /* Fix filling in Safari */
 .player-control button:active svg {
   fill: inherit;
-}
-
-.play-enter-active {
-  transition: all .3s ease;
 }
 
 .player-control__prev svg {
