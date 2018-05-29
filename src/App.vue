@@ -89,6 +89,11 @@ export default {
         }    
       }
 
+      if (minutes === 60) {
+        hours++
+        minutes = '0' + 0
+      } 
+
       return hours >= 1 ? `${hours}:${minutes}:${seconds}` : `${minutes}:${seconds}`
     }
   },
