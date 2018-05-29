@@ -69,6 +69,7 @@
 export default {
   filters: {
     minute(value) {
+      let hours = Math.floor(value / 3600)
       let minutes = Math.floor(value / 60)
       let seconds = Math.round(value - minutes * 60)
 
@@ -79,6 +80,13 @@ export default {
 
       if (seconds < 10) {
         seconds = '0' + seconds
+      }
+
+      if (minutes >= 60) {
+        minutes = minutes - (hours * 60)
+        if (minutes < 10) {
+          minutes = '0' + minutes
+        }    
       }
 
       return `${minutes}:${seconds}`
