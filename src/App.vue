@@ -89,7 +89,7 @@ export default {
         }    
       }
 
-      return `${minutes}:${seconds}`
+      return hours >= 1 ? `${hours}:${minutes}:${seconds}` : `${minutes}:${seconds}`
     }
   },
   data() {
