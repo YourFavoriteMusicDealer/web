@@ -68,6 +68,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   filters: {
     minute(value) {
@@ -107,13 +109,23 @@ export default {
       isCanPlay:   false,
       isPlay:      false,
       isRevind:    false,
-      songData:    { artist: 'Roy Orbison',url: 'http:\/\/www.jonkofee-music.ru\/song\/1122\/stream',title: 'Oh, Pretty Woman (Album Version)',img: 'https:\/\/sun1-4.userapi.com\/c604720\/v604720447\/37e9b\/rHQsT8CjpqY.jpg' }
+      songData:    {}
     }
   },
   computed: {
     timelinePercent() {
       return this.currentTime * 100 / this.duration
     }
+  },
+  created() {
+    axios.get('https://www.jonkofee-music.ru/song/1188')
+      .then(function({ data }) {
+        console.log(data)
+        this.songData = data
+      })
+      .catch(function(error) {
+        alert(error)
+      })
   },
   methods: {
     getGradientBackground(currentPosition, maxValue, isHighlight) {
