@@ -11,7 +11,7 @@
       @durationchange="duration = $refs.audio.duration"
     />
     <div :class="['player-cover', { 'player-cover_scaled': isPlay }, { 'player-cover_moved': isRevind }]"> 
-      <div class="player-cover__img" />
+      <div :style="{ 'background-image': `url(${songData.img})` }" class="player-cover__img" />
     </div>
     <div class="player-timeline"> 
       <span :class="['player-timeline__time', 'player-timeline__time_left', { 'player-timeline__time_moved': timelinePercent<15 && isRevind }, { 'player-timeline__time_highlight': isRevind }]">{{ currentTime | minute }}</span>
@@ -29,8 +29,8 @@
         @mouseup="isRevind = false"
       >
     </div>
-    <h1 class="player-song">Hold On, I'm Comin'</h1>
-    <h2 class="player-artist">Sam & Dave</h2>
+    <h1 class="player-song">{{ songData.title }}</h1>
+    <h2 class="player-artist">{{ songData.artist }}</h2>
     <div class="player-control">
       <button class="player-control__prev"><icon name="previous" /></button>
       <button 
@@ -107,7 +107,7 @@ export default {
       isCanPlay:   false,
       isPlay:      false,
       isRevind:    false,
-      songData:    { url: 'http://cs1-74v4.vkuseraudio.net/p12/2806e1ab886ee1.mp3?extra=yR9LPPVWOS1cv4r6loSxJ7KmIdAZeMghcNYof1n4CnHxjxb3IYq93M8IH4ptWUNwyaesAyMA0D_wdJ5R7x3RJa9IXG3DvsfpscodccEHDgCAvQUhKgO3SnW92CNV2IneQ5aODq012EMi9A' }
+      songData:    { artist: 'Roy Orbison',url: 'http:\/\/www.jonkofee-music.ru\/song\/1122\/stream',title: 'Oh, Pretty Woman (Album Version)',img: 'https:\/\/sun1-4.userapi.com\/c604720\/v604720447\/37e9b\/rHQsT8CjpqY.jpg' }
     }
   },
   computed: {
@@ -163,7 +163,6 @@ div {
 }
 
 .player-cover__img {
-  background-image: url("https://sun1-9.userapi.com/c841035/v841035273/67304/ta_vyHgsssE.jpg");
   background-size: cover;
   width: 240px;
   height: 240px;
