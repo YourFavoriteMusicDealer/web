@@ -119,10 +119,7 @@ export default {
   },
   created() {
     axios.get('https://www.jonkofee-music.ru/song/1188')
-      .then(function({ data }) {
-        console.log(data)
-        this.songData = data
-      })
+      .then(({ data }) => this.songData = data)
       .catch(function(error) {
         alert(error)
       })
