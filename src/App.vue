@@ -105,7 +105,8 @@ export default {
       currentTime: 0,
       duration:    0,
       isCanPlay:   false,
-      isPlay:      false,isRevind:    false,
+      isPlay:      false,
+      isRevind:    false,
       songData:    { url: 'http://cs1-74v4.vkuseraudio.net/p12/2806e1ab886ee1.mp3?extra=yR9LPPVWOS1cv4r6loSxJ7KmIdAZeMghcNYof1n4CnHxjxb3IYq93M8IH4ptWUNwyaesAyMA0D_wdJ5R7x3RJa9IXG3DvsfpscodccEHDgCAvQUhKgO3SnW92CNV2IneQ5aODq012EMi9A' }
     }
   },
