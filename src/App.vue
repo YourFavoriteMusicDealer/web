@@ -71,6 +71,7 @@
 export default {
   filters: {
     minute(value) {
+      let hours = Math.floor(value / 3600)
       let minutes = Math.floor(value / 60)
       let seconds = Math.round(value - minutes * 60)
 
@@ -83,7 +84,19 @@ export default {
         seconds = '0' + seconds
       }
 
-      return `${minutes}:${seconds}`
+      if (minutes >= 60) {
+        minutes = minutes - (hours * 60)
+        if (minutes < 10) {
+          minutes = '0' + minutes
+        }    
+      }
+
+      if (minutes === 60) {
+        hours++
+        minutes = '0' + 0
+      } 
+
+      return hours >= 1 ? `${hours}:${minutes}:${seconds}` : `${minutes}:${seconds}`
     }
   },
   data() {
@@ -94,7 +107,7 @@ export default {
       isCanPlay:   false,
       isPlay:      false,
       isRevind:    false,
-      songData:    { url: 'http://dlm.mp3party.net/online/1080/1080860.mp3' }
+      songData:    { url: 'http://cs1-74v4.vkuseraudio.net/p12/2806e1ab886ee1.mp3?extra=yR9LPPVWOS1cv4r6loSxJ7KmIdAZeMghcNYof1n4CnHxjxb3IYq93M8IH4ptWUNwyaesAyMA0D_wdJ5R7x3RJa9IXG3DvsfpscodccEHDgCAvQUhKgO3SnW92CNV2IneQ5aODq012EMi9A' }
     }
   },
   computed: {
