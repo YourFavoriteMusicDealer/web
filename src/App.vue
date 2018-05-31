@@ -118,11 +118,7 @@ export default {
     }
   },
   created() {
-    axios.get('https://www.jonkofee-music.ru/song/1188')
-      .then(({ data }) => this.songData = data)
-      .catch(function(error) {
-        alert(error)
-      })
+    this.getSong(1111)
   },
   methods: {
     getGradientBackground(currentPosition, maxValue, isHighlight) {
@@ -130,6 +126,14 @@ export default {
       const color = isHighlight ? '#ff2d55' : '#8c8c8c'
 
       return `linear-gradient(to right, ${color} ${start}%, #ddd ${start}%)`
+    },
+    getSong(messageID) {
+      let song  = `https://www.jonkofee-music.ru/song/${messageID}`
+      axios.get(song)
+        .then(({ data }) => this.songData = data)
+        .catch(function(error) {
+          alert(error)
+        })
     }
   }
 }
