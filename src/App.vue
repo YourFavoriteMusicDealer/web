@@ -3,12 +3,13 @@
     <audio 
       ref="audio" 
       :src="songData.url" 
-      @canplay="isCanPlay = true"
+      @canplay="isCanPlay = true, $refs.audio.play()"
       @play="isPlay = true" 
       @pause="isPlay = false"
       @timeupdate="currentTime = $refs.audio.currentTime"
       @volumechange="volume = $refs.audio.volume"
       @durationchange="duration = $refs.audio.duration"
+      @ended="nextSong()"
     />
     <div :class="['player-cover', { 'player-cover_scaled': isPlay }, { 'player-cover_moved': isRevind }]"> 
       <div :style="{ 'background-image': `url(${songData.img})` }" class="player-cover__img" />
@@ -44,7 +45,7 @@
         class="player-control__pause" 
         @click="$refs.audio.pause()"
       ><icon name="pause" /></button>
-      <button class="player-control__next"><icon name="next" /></button>
+      <button class="player-control__next" @click="nextSong()"><icon name="next" /></button>
     </div>
     <div class="player-volume">
       <icon name="less-volume" class="player-volume__less" />
@@ -111,7 +112,7 @@ export default {
       isCanPlay:   false,
       isPlay:      false,
       isRevind:    false,
-      messageID:   1120, 
+      messageID:   1000, 
       songData:    {}
     }
   },
@@ -136,7 +137,13 @@ export default {
     initSong(messageID) {
       axios.get(`https://www.jonkofee-music.ru/song/${messageID}`)
         .then(({ data }) => this.songData = data)
-        .catch(console.warn)
+        .catch(() => this.nextSong())
+    },
+    nextSong() {
+      this.$refs.audio.pause()
+      this.isCanPlay = !this.isCanPlay
+      this.messageID = this.messageID + 1
+      this.initSong(this.messageID)
     }
   }
 }
