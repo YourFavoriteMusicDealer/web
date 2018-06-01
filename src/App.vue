@@ -60,7 +60,7 @@
         @input="$refs.audio.volume = volume"
       >
     </div>
-    <a :href="`tg://resolve?domain=jonkofee_music&post=${messageID}`"> 
+    <a :href="linkSong"> 
       <button class="player-telegram">
         <span>Telegram</span>
         <icon name="download" />
@@ -111,13 +111,16 @@ export default {
       isCanPlay:   false,
       isPlay:      false,
       isRevind:    false,
-      messageID:   1177, 
+      messageID:   1120, 
       songData:    {}
     }
   },
   computed: {
     timelinePercent() {
       return this.currentTime * 100 / this.duration
+    },
+    linkSong() {
+      return `tg://resolve?domain=jonkofee_music&post=${this.messageID}`
     }
   },
   created() {
@@ -442,6 +445,10 @@ div {
   font-size: 15px;
   text-align: center;
   color: #ffffff;
+}
+
+.player-telegram:active {
+  background-color: #c60026;
 }
 
 .player-telegram span {
