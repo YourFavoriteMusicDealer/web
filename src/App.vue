@@ -60,10 +60,12 @@
         @input="$refs.audio.volume = volume"
       >
     </div>
-    <button class="player-telegram">
-      <span>Telegram</span>
-      <icon name="download" />
-    </button>
+    <a :href="linkSong"> 
+      <button class="player-telegram">
+        <span>Telegram</span>
+        <icon name="download" />
+      </button>
+    </a> 
   </div>
 </template>
 
@@ -109,6 +111,7 @@ export default {
       isCanPlay:   false,
       isPlay:      false,
       isRevind:    false,
+      linkSong:    '', 
       songData:    {}
     }
   },
@@ -118,7 +121,7 @@ export default {
     }
   },
   created() {
-    this.initSong(1188)
+    this.initSong(1180)
   },
   methods: {
     getGradientBackground(currentPosition, maxValue, isHighlight) {
@@ -128,6 +131,7 @@ export default {
       return `linear-gradient(to right, ${color} ${start}%, #ddd ${start}%)`
     },
     initSong(messageID) {
+      this.linkSong = `tg://resolve?domain=jonkofee_music&post=${messageID}` 
       axios.get(`https://www.jonkofee-music.ru/song/${messageID}`)
         .then(({ data }) => this.songData = data)
         .catch(console.warn)
