@@ -1,4 +1,4 @@
-//Create index.js
+// Create index.js
 export default {
   gaKey: ''
 }
