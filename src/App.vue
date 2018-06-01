@@ -60,10 +60,12 @@
         @input="$refs.audio.volume = volume"
       >
     </div>
-    <button class="player-telegram">
-      <span>Telegram</span>
-      <icon name="download" />
-    </button>
+    <a :href="telegramSongLink"> 
+      <button class="player-telegram">
+        <span>Telegram</span>
+        <icon name="download" />
+      </button>
+    </a> 
   </div>
 </template>
 
@@ -109,16 +111,20 @@ export default {
       isCanPlay:   false,
       isPlay:      false,
       isRevind:    false,
+      messageID:   1120, 
       songData:    {}
     }
   },
   computed: {
     timelinePercent() {
       return this.currentTime * 100 / this.duration
+    },
+    telegramSongLink() {
+      return `tg://resolve?domain=jonkofee_music&post=${this.messageID}`
     }
   },
   created() {
-    this.initSong(1188)
+    this.initSong(this.messageID)
   },
   methods: {
     getGradientBackground(currentPosition, maxValue, isHighlight) {
@@ -429,6 +435,7 @@ div {
 }
 
 .player-telegram {
+  cursor: pointer;
   margin: 35px auto 0;
   width: 160px;
   height: 40px;
@@ -439,6 +446,10 @@ div {
   font-size: 15px;
   text-align: center;
   color: #ffffff;
+}
+
+.player-telegram:hover {
+  background-color: #c60026;
 }
 
 .player-telegram span {
