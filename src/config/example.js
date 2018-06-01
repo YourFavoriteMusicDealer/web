@@ -1,4 +1,2 @@
 // Create index.js
-export default {
-  gaKey: ''
-}
+export default {}
