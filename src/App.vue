@@ -60,7 +60,7 @@
         @input="$refs.audio.volume = volume"
       >
     </div>
-    <a :href="songLink"> 
+    <a :href="telegramSongLink"> 
       <button class="player-telegram">
         <span>Telegram</span>
         <icon name="download" />
@@ -119,7 +119,7 @@ export default {
     timelinePercent() {
       return this.currentTime * 100 / this.duration
     },
-    songLink() {
+    telegramSongLink() {
       return `tg://resolve?domain=jonkofee_music&post=${this.messageID}`
     }
   },
