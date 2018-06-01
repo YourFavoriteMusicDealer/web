@@ -435,6 +435,7 @@ div {
 }
 
 .player-telegram {
+  cursor: pointer;
   margin: 35px auto 0;
   width: 160px;
   height: 40px;
