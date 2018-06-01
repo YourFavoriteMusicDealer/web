@@ -118,7 +118,7 @@ export default {
     }
   },
   created() {
-    this.getSong(1188)
+    this.initSong(1188)
   },
   methods: {
     getGradientBackground(currentPosition, maxValue, isHighlight) {
@@ -127,12 +127,10 @@ export default {
 
       return `linear-gradient(to right, ${color} ${start}%, #ddd ${start}%)`
     },
-    getSong(messageID) {
+    initSong(messageID) {
       axios.get(`https://www.jonkofee-music.ru/song/${messageID}`)
         .then(({ data }) => this.songData = data)
-        .catch(error =>
-          console.warn(error)
-        )
+        .catch(console.warn)
     }
   }
 }
