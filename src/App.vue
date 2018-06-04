@@ -142,7 +142,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 /** Regular */
 @font-face {
   font-family: "SF";
@@ -176,41 +176,36 @@ div {
   z-index: 1;
   transition: transform .3s ease;
   will-change: transform;
-}
-
-.player-cover__img {
-  background-size: cover;
-  width: 240px;
-  height: 240px;
-  border-radius: 5px;
-  position: relative;
-}
-
-.player-cover__img::before {
+  &__img {
+    background-size: cover;
+    width: 240px;
+    height: 240px;
+    border-radius: 5px;
+    position: relative;
+  }
+  &__img::before {
   content: '';
-  background-image: inherit;
-  background-size: cover;
-  position: absolute;
-  top: 15px;
-  right: 0;
-  bottom: -15px;
-  left: 0;
-  z-index: -1;
-  opacity: 0;
-  filter: blur(25px);
-}
-
-.player-cover_scaled {
-  transform: scale(1.25);
-  animation: scale-cover .5s linear .2s;
-}
-
-.player-cover_moved {
-  transform: translateY(-20px);
-}
-
-.player-cover_scaled .player-cover__img::before {
-  opacity: .9;
+    background-image: inherit;
+    background-size: cover;
+    position: absolute;
+    top: 15px;
+    right: 0;
+    bottom: -15px;
+    left: 0;
+    z-index: -1;
+    opacity: 0;
+    filter: blur(25px);
+  }
+  &_scaled {
+    transform: scale(1.25);
+    animation: scale-cover .5s linear .2s;
+  }
+  &_moved {
+    transform: translateY(-20px);
+  }
+  &_scaled &__img::before {
+    opacity: .9;
+  }
 }
 
 .player-timeline {
