@@ -13,7 +13,7 @@ export default {}
 @font-face {
   font-family: "SF";
   font-weight: normal;
-  src: url("assets/fonts/SFUIDisplay-Regular.woff");
+  src: url("fonts/SFUIDisplay-Regular.woff");
 }
 
 * {
