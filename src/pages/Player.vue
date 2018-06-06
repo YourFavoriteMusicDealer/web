@@ -103,6 +103,12 @@ export default {
       return hours >= 1 ? `${hours}:${minutes}:${seconds}` : `${minutes}:${seconds}`
     }
   },
+  props: {
+    telegramMessageId: {
+      type:     Number,
+      required: true
+    } 
+  },
   data() {
     return {
       volume:      1,
@@ -111,7 +117,7 @@ export default {
       isCanPlay:   false,
       isPlay:      false,
       isRevind:    false,
-      messageID:   this.$route.params.telegramMessageId,
+      messageID:   this.telegramMessageId,
       songData:    {}
     }
   },
