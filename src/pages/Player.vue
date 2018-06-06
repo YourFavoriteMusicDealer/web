@@ -122,7 +122,6 @@ export default {
       return `tg://resolve?domain=jonkofee_music&post=${this.messageID}`
     },
     messageID() {
-      console.log(this.$route.params)
       return this.$route.params.telegrmMassageId
     }
   },

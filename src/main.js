@@ -13,6 +13,7 @@ Vue.use(VueRouter)
 Vue.component('icon', Icon)
 
 const router = new VueRouter({
+  mode:   'history',
   routes: [
     { path: '/home', component: Home },
     { path: '/bar', component: Bar },
