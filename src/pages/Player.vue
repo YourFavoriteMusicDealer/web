@@ -111,6 +111,7 @@ export default {
       isCanPlay:   false,
       isPlay:      false,
       isRevind:    false,
+      messageID:   this.$route.params.telegrmMassageId,
       songData:    {}
     }
   },
@@ -120,9 +121,6 @@ export default {
     },
     telegramSongLink() {
       return `tg://resolve?domain=jonkofee_music&post=${this.messageID}`
-    },
-    messageID() {
-      return this.$route.params.telegrmMassageId
     }
   },
   created() {
