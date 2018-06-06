@@ -117,7 +117,6 @@ export default {
       isCanPlay:   false,
       isPlay:      false,
       isRevind:    false,
-      messageID:   this.telegramMessageId,
       songData:    {}
     }
   },
@@ -126,11 +125,11 @@ export default {
       return this.currentTime * 100 / this.duration
     },
     telegramSongLink() {
-      return `tg://resolve?domain=jonkofee_music&post=${this.messageID}`
+      return `tg://resolve?domain=jonkofee_music&post=${this.telegramMessageId}`
     }
   },
   created() {
-    this.initSong(this.messageID)
+    this.initSong(this.telegramMessageId)
   },
   methods: {
     getGradientBackground(currentPosition, maxValue, isHighlight) {
@@ -139,8 +138,8 @@ export default {
 
       return `linear-gradient(to right, ${color} ${start}%, #ddd ${start}%)`
     },
-    initSong(messageID) {
-      axios.get(`https://www.jonkofee-music.ru/song/${messageID}`)
+    initSong(telegramMessageId) {
+      axios.get(`https://www.jonkofee-music.ru/song/${telegramMessageId}`)
         .then(({ data }) => this.songData = data)
         .catch(console.warn)
     }
