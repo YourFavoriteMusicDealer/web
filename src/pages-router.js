@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 const router = new VueRouter({
   mode:   'history',
   routes: [
-    { path: '/:telegramMessegeId', component: Player }
+    { path: '/:telegramMessageId', component: Player }
   ] 
 })
 

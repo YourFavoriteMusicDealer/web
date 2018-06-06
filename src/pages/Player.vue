@@ -111,7 +111,7 @@ export default {
       isCanPlay:   false,
       isPlay:      false,
       isRevind:    false,
-      messageID:   this.$route.params.telegramMessegeId,
+      messageID:   this.$route.params.telegramMessageId,
       songData:    {}
     }
   },
