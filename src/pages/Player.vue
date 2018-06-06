@@ -138,8 +138,8 @@ export default {
 
       return `linear-gradient(to right, ${color} ${start}%, #ddd ${start}%)`
     },
-    initSong(telegramMessageId) {
-      axios.get(`https://www.jonkofee-music.ru/song/${telegramMessageId}`)
+    initSong() {
+      axios.get(`https://www.jonkofee-music.ru/song/${this.telegramMessageId}`)
         .then(({ data }) => this.songData = data)
         .catch(console.warn)
     }
