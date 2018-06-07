@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import Icon from 'vue-svg-icon/Icon.vue'
 import config from './config'
-import router from './pages-router.js'
+import router from './router.js'
 
 Vue.component('icon', Icon)
 
