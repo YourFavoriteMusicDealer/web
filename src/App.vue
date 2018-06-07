@@ -8,7 +8,7 @@
 export default {}
 </script>
 
-<style>
+<style lang="scss" scoped>
 /** Regular */
 @font-face {
   font-family: "SF";
