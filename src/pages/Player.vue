@@ -129,7 +129,7 @@ export default {
     }
   },
   created() {
-    this.initSong(this.telegramMessageId)
+    this.initSong()
   },
   methods: {
     getGradientBackground(currentPosition, maxValue, isHighlight) {
