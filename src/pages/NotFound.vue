@@ -60,6 +60,11 @@ $primary-color: #ff2d55;
   justify-content: center;
   align-items: center;
   perspective: 1000px;
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer */
+  -khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
+  -webkit-user-select: none; /* Chrome, Safari, and Opera */
+  -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
 }
 
 $wallSize: 200px;
@@ -115,7 +120,7 @@ div {
       position: absolute;
       width: $wallSize;
       height: $wallSize;
-      background: rgba($primary-color, 0.8);
+      background: rgba($primary-color, 0.6);
       border: 1px solid darken($primary-color,20%);
       box-sizing: border-box;
       &::before {
