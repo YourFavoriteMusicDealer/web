@@ -49,8 +49,10 @@ export default {
 
 <style lang="scss" scoped>
 
+$primary-color: #ff2d55;
+
 .notFound {
-  background: #000;
+  background: #fff;
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -80,7 +82,7 @@ div {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(20, 20, 20, 1);
+    background: $primary-color;
     color: #fff;
     font-size: 7rem;
     @for $i from 1 through 20 {
@@ -113,8 +115,8 @@ div {
       position: absolute;
       width: $wallSize;
       height: $wallSize;
-      background: rgba(10, 10, 10, 0.8);
-      border: 1px solid rgba(250, 250, 250, 1);
+      background: rgba($primary-color, 0.8);
+      border: 1px solid darken($primary-color,20%);
       box-sizing: border-box;
       &::before {
         content: '';
