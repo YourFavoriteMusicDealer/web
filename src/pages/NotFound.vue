@@ -1,210 +1,59 @@
 <template>
   <div class="notFound">
-    <div class="rail">
-      <div class="stamp four">4</div>
-      <div class="stamp zero">0</div>
-      <div class="stamp four">4</div>
-      <div class="stamp zero">0</div>
-      <div class="stamp four">4</div>
-      <div class="stamp zero">0</div>
-      <div class="stamp four">4</div>
-      <div class="stamp zero">0</div>
-      <div class="stamp four">4</div>
-      <div class="stamp zero">0</div>
-      <div class="stamp four">4</div>
-      <div class="stamp zero">0</div>
-      <div class="stamp four">4</div>
-      <div class="stamp zero">0</div>
-      <div class="stamp four">4</div>
-      <div class="stamp zero">0</div>
-      <div class="stamp four">4</div>
-      <div class="stamp zero">0</div>
-      <div class="stamp four">4</div>
-      <div class="stamp zero">0</div>
-    </div>
-    <div class="world">
-      <div class="forward">
-        <div class="box">
-          <div class="wall" />
-          <div class="wall" />
-          <div class="wall" />
-          <div class="wall" />
-          <div class="wall" />
-          <div class="wall" />
-        </div>
-      </div>
-    </div>
+    <p class="notFound-error">E<span>r</span>ror</p>
+    <p class="notFound-code">4<span>0</span><span>4</span></p>
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      notFoundComponent: '404'
-    }
-  }
-}
-</script>
-
 <style lang="scss" scoped>
 
-$primary-color: #ff2d55;
-
 .notFound {
-  background: #fff;
   height: 100vh;
-  overflow: hidden;
-  display: flex;
-  font-family: 'Anton', sans-serif;
-  justify-content: center;
-  align-items: center;
-  perspective: 1000px;
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer */
-  -khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
-  -webkit-user-select: none; /* Chrome, Safari, and Opera */
-  -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
-}
+  background-color: #111111; 
+  font-size: 75px;
+  font-family: 'Monoton';
+  text-align: center;
+  text-shadow: 0 0 80px red,0 0 30px FireBrick,0 0 6px DarkRed;
+  color: red;
 
-$wallSize: 200px;
+  p { 
+    margin:0; 
+  }
 
-div {
-  transform-style: preserve-3d;
-}
-.rail {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotateX(-30deg) rotateY(-30deg);
-  .stamp {
-    position: absolute;
-    width: $wallSize;
-    height: $wallSize;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: $primary-color;
+  &-error {
     color: #fff;
-    font-size: 7rem;
-    @for $i from 1 through 20 {
-      &:nth-child(#{$i}) {
-        animation: stampSlide 20 * 2000ms ($i * -2000) - 300ms linear infinite;
-      }
-    }
+    text-shadow: 0 0 80px #ffffff,0 0 30px #008000,0 0 6px #0000ff;
   }
-}
-@keyframes stampSlide {
-  0% {
-    transform: rotateX(90deg) rotateZ(-90deg) translateZ(-$wallSize) translateY(130px);
+
+  &-error span {
+    animation: upper 11s linear infinite;
   }
-  100% {
-    transform: rotateX(90deg) rotateZ(-90deg) translateZ(-$wallSize) translateY(130 - 200 * 20px);
+
+  &-code span:nth-of-type(2) {
+    animation: lower 10s linear infinite;
   }
-}
-.world {
-  transform: rotateX(-30deg) rotateY(-30deg);
-  .forward {
-    position: absolute;
-    animation: slide 2000ms linear infinite;
-  }
-  .box {
-    width: $wallSize;
-    height: $wallSize;
-    transform-origin: 100% 100%;
-    animation: roll 2000ms cubic-bezier(1.000, 0.010, 1.000, 1.000) infinite;
-    .wall {
-      position: absolute;
-      width: $wallSize;
-      height: $wallSize;
-      background: rgba($primary-color, 0.6);
-      border: 1px solid darken($primary-color,20%);
-      box-sizing: border-box;
-      &::before {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #fff;
-        font-size: 7rem;
-      }
-      &:nth-child(1) {
-        transform: translateZ($wallSize / 2);
-      }
-      &:nth-child(2) {
-        transform: rotateX(180deg) translateZ($wallSize / 2);
-      }
-      &:nth-child(3) {
-        transform: rotateX(90deg) translateZ($wallSize / 2);
-        &::before {
-          transform: rotateX(180deg) rotateZ(90deg) translateZ(-1px);
-          animation: zeroFour 4000ms -2000ms linear infinite;
-        }
-      }
-      &:nth-child(4) {
-        transform: rotateX(-90deg) translateZ($wallSize / 2);
-        &::before {
-          transform: rotateX(180deg) rotateZ(-90deg) translateZ(-1px);
-          animation: zeroFour 4000ms -2000ms linear infinite;
-        }
-      }
-      &:nth-child(5) {
-        transform: rotateY(90deg) translateZ($wallSize / 2);
-        &::before {
-          transform: rotateX(180deg) translateZ(-1px);
-          animation: zeroFour 4000ms linear infinite;
-        }
-      }
-      &:nth-child(6) {
-        transform: rotateY(-90deg) translateZ($wallSize / 2);
-        &::before {
-          transform: rotateX(180deg) rotateZ(180deg) translateZ(-1px);
-          animation: zeroFour 4000ms linear infinite;
-        }
-      }
-    }
+
+  &-code span:nth-of-type(1) {
+    text-shadow: none;
+    opacity:.4;
   }
 }
 
-@keyframes zeroFour {
-  0% {
-    content: '4';
+@keyframes upper {
+  0%,19.999%,22%,62.999%,64%, 64.999%,70%,100% {
+    opacity:.99; text-shadow: 0 0 80px #ffffff,0 0 30px #008000,0 0 6px #0000ff;
   }
-  100% {
-    content: '0';
-  }
-}
-
-@keyframes roll {
-  0% {
-    transform: rotateZ(0deg);
-  }
-  85% {
-    transform: rotateZ(90deg);
-  }
-  87% {
-    transform: rotateZ(88deg);
-  }
-  90% {
-    transform: rotateZ(90deg);
-  }
-  100% {
-    transform: rotateZ(90deg);
+  20%,21.999%,63%,63.999%,65%,69.999% {
+    opacity:0.4; text-shadow: none; 
   }
 }
 
-@keyframes slide {
-  0% {
-    transform: translateX(0);
+@keyframes lower {
+  0%,12%,18.999%,23%,31.999%,37%,44.999%,46%,49.999%,51%,58.999%,61%,68.999%,71%,85.999%,96%,100% {
+    opacity:0.99; text-shadow: 0 0 80px red,0 0 30px FireBrick,0 0 6px DarkRed;
   }
-  100% {
-    transform: translateX(-$wallSize);
+  19%,22.99%,32%,36.999%,45%,45.999%,50%,50.99%,59%,60.999%,69%,70.999%,86%,95.999% { 
+    opacity:0.4; text-shadow: none; 
   }
 }
 

@@ -16,6 +16,12 @@ export default {}
   src: url("assets/fonts/SFUIDisplay-Regular.woff");
 }
 
+@font-face {
+  font-family: "Monoton";
+  font-weight: normal;
+  src: url("assets/fonts/Monoton.woff");
+}
+
 * {
   font-family: "SF";
   letter-spacing: .05em;
