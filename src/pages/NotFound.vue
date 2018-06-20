@@ -1,7 +1,7 @@
 <template>
-  <div class="notFound">
-    <p class="notFound-error">E<span>r</span>ror</p>
-    <p class="notFound-code">4<span>0</span><span>4</span></p>
+  <div class="not-found">
+    <p class="not-found__error">E<span>r</span>ror</p>
+    <p class="not-found__code">4<span>0</span><span>4</span></p>
   </div>
 </template>
 
@@ -10,7 +10,7 @@
 
 
 
-.notFound {
+.not-found {
   display:flex;
   flex-direction: column;
   justify-content: center;
@@ -27,20 +27,20 @@
     margin:0; 
   }
 
-  &-error {
+  &__error {
     color: #fff;
     text-shadow: 0 0 80px #ffffff,0 0 30px #008000,0 0 6px #0000ff;
   }
 
-  &-error span {
+  &__error span {
     animation: upper 11s linear infinite;
   }
 
-  &-code span:nth-of-type(2) {
+  &__code span:nth-of-type(2) {
     animation: lower 10s linear infinite;
   }
 
-  &-code span:nth-of-type(1) {
+  &__code span:nth-of-type(1) {
     text-shadow: none;
     opacity:.4;
   }
