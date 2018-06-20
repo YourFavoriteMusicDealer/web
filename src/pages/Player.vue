@@ -156,6 +156,7 @@ div {
 }
 
 .player {
+  font-family: "SF";
   width: 375px;
   background-color: #ffffff;
   padding: 70px 0 35px;

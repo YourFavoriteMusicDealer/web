@@ -8,7 +8,7 @@
 export default {}
 </script>
 
-<style lang="scss" scoped>
+<style>
 /** Regular */
 @font-face {
   font-family: "SF";
@@ -23,8 +23,11 @@ export default {}
 }
 
 * {
-  font-family: "SF";
   letter-spacing: .05em;
   font-weight: 400;
+}
+
+body{
+  margin: 0px;
 }
 </style>
