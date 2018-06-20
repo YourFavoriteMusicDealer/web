@@ -1,32 +1,29 @@
 <template>
   <div class="notFound">
-    <div class="text">
-      <p class="notFound-error">E<span>r</span>ror</p>
-      <p class="notFound-code">4<span>0</span><span>4</span></p>
-    </div>
+    <p class="notFound-error">E<span>r</span>ror</p>
+    <p class="notFound-code">4<span>0</span><span>4</span></p>
   </div>
 </template>
 
 <style lang="scss">
 
-.text{
-  display: table;
-  margin: auto;
-}
+
+
 
 .notFound {
-  display: table-cell;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
   width: 100vw;
   background-color: #111111; 
   font-size: 75px;
   font-family: 'Monoton';
-  vertical-align: middle;
   text-shadow: 0 0 80px red,0 0 30px FireBrick,0 0 6px DarkRed;
   color: red;
 
   p { 
-    text-align: center;
     margin:0; 
   }
 
