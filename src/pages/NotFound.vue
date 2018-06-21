@@ -7,9 +7,6 @@
 
 <style lang="scss">
 
-
-
-
 .not-found {
   display:flex;
   flex-direction: column;
